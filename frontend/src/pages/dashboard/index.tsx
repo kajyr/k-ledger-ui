@@ -112,6 +112,7 @@ const Dashboard: FC = () => {
               <TextInput
                 label="Account"
                 value={entry.account}
+                style={{ flex: 1 }}
                 onChange={(event) =>
                   updateRow(i, "account", event.currentTarget.value)
                 }
@@ -119,6 +120,7 @@ const Dashboard: FC = () => {
               <TextInput
                 label="Amount"
                 value={entry.amount}
+                style={{ flex: 1 }}
                 onChange={(event) =>
                   updateRow(i, "amount", event.currentTarget.value)
                 }
