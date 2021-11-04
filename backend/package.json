@@ -14,9 +14,8 @@
     "fastify-log": "^1.2.1",
     "fastify-routes": "^3.0.1",
     "fastify-static": "^4.0.1",
-    "luxon": "^2.0.2",
     "pino-pretty": "^7.2.0",
-    "pta-js": "file:./../../pta-js",
+    "pta-js": "^0.1.0",
     "ts-node": "^10.4.0",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
@@ -29,7 +28,6 @@
   },
   "scripts": {
     "start": "ts-node server.ts",
-    "build": "tsc",
     "watch": "nodemon"
   },
   "nodemonConfig": {

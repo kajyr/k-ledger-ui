@@ -6,6 +6,7 @@ import clearTransaction from 'helpers/clear-transaction';
 import { Button, Group, LoadingOverlay, Paper, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
+import { useNotifications } from '@mantine/notifications';
 
 import { Transaction } from 'pta-js';
 
@@ -14,6 +15,8 @@ import ConfirmationModal from './confirmation-modal';
 const EMPTY_ENTRY = { account: "", amount: "" };
 
 const Dashboard: FC = () => {
+  const notifications = useNotifications();
+
   const { onSubmit, values, setFieldValue, setValues, reset } = useForm({
     initialValues: {
       date: new Date(),
@@ -67,8 +70,19 @@ const Dashboard: FC = () => {
     });
     setOverlay(false);
     if (response.ok) {
+      notifications.showNotification({
+        title: "Transaction saved",
+        message: "All is good.",
+        color: "green",
+      });
       reset();
+      return;
     }
+    notifications.showNotification({
+      title: "Error",
+      message: "Something went wrong, sorry.",
+      color: "ed",
+    });
   }
 
   return (

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Page from 'templates/Page';
+import { NotificationsProvider } from '@mantine/notifications';
 
 import App from './App';
 import GlobalStyle from './globalstyle';
@@ -20,14 +20,16 @@ const queryClient = new QueryClient({
 render(
   <>
     <GlobalStyle />
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<FourOhFour />} />
-          <Route path="/" element={<App />} />
-        </Routes>
-      </BrowserRouter>
-    </QueryClientProvider>
+    <NotificationsProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<FourOhFour />} />
+            <Route path="/" element={<App />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </NotificationsProvider>
   </>,
   document.getElementById("rroot")
 );
