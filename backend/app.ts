@@ -4,8 +4,6 @@ import path from 'path';
 const PUBLIC_PATH = path.join(__dirname, "..", "public");
 
 async function build(opts = {}) {
-  const nodeEnv = (process.env.NODE_ENV || "").toLowerCase();
-
   const app = await fastify(opts);
   app.register(require("fastify-log"));
   app.register(require("fastify-routes"));

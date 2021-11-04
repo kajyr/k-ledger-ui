@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { useQuery } from 'react-query';
-import { Route, Routes } from 'react-router-dom';
 
 import Loader from 'atoms/Loader';
 
@@ -21,9 +20,7 @@ const App: FC = () => {
   return (
     <>
       <Page filename={data.file}>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-        </Routes>
+        <Dashboard />
       </Page>
     </>
   );

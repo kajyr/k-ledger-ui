@@ -23,8 +23,8 @@ render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/404" element={<FourOhFour />} />
-          <Route path="/*" element={<App />} />
+          <Route path="*" element={<FourOhFour />} />
+          <Route path="/" element={<App />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

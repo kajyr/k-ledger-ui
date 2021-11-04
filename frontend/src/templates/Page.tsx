@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
+import { Title } from '@mantine/core';
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,10 +10,6 @@ const Wrapper = styled.div`
 
   header {
     margin-bottom: 15px;
-
-    h1 {
-      margin-bottom: 5px;
-    }
   }
 `;
 
@@ -22,7 +20,7 @@ const Body = styled.main`
 const Page: FC<{ filename: string }> = ({ filename, children }) => (
   <Wrapper>
     <header>
-      <h1>kLedger UI</h1>
+      <Title order={1}>kLedger UI</Title>
       <div>File in use: {filename}</div>
     </header>
     <Body>{children}</Body>

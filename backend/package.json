@@ -8,6 +8,7 @@
   "dependencies": {
     "@types/node": "^16.11.6",
     "colors": "^1.1.2",
+    "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
     "fastify": "^3.15.0",
     "fastify-log": "^1.2.1",
@@ -15,6 +16,7 @@
     "fastify-static": "^4.0.1",
     "luxon": "^2.0.2",
     "pino-pretty": "^7.2.0",
+    "pta-js": "file:./../../pta-js",
     "ts-node": "^10.4.0",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"

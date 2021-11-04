@@ -1,8 +1,9 @@
-require("dotenv");
+require("dotenv").config();
 
 import colors from 'colors/safe';
 
 import app from './app';
+import { fullFile } from './dal';
 import { Server } from './types';
 
 const PORT = 4445;
@@ -50,6 +51,7 @@ const init = async () => {
 
   //@ts-ignore This is added by a fastify plugin
   logRoutes(server.routes);
+  console.log("Journal file:", fullFile);
 };
 
 init();

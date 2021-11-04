@@ -1,4 +1,6 @@
-const RESOURCE_ID = "dives";
+import { Transaction } from 'pta-js';
+
+import { addTransaction } from '../dal/';
 
 export default function (fastify, opts, done) {
   const routes = [
@@ -13,12 +15,12 @@ export default function (fastify, opts, done) {
       method: "POST",
       path: `/api/journal`,
       handler: async function (request, reply) {
-        /*  const { guid, ...item } = request.body;
-        if (!guid) {
-          return reply.status(405).send({ error: "Missing item id" });
+        const trx = request.body as Transaction;
+        if (!trx.date) {
+          return reply.status(405).send({ error: "Missing date" });
         }
 
- */
+        await addTransaction(trx);
         return reply.status(200).send();
       },
     },
