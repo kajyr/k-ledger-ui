@@ -5,7 +5,7 @@
   "command": {
     "publish": {
       "message": "chore(release): publish",
-      "allowBranch": "master",
+      "allowBranch": "main",
       "ignoreChanges": ["*.test.js", "*.test.ts", "*.test.tsx", "*.md"],
       "conventionalCommits": true
     },

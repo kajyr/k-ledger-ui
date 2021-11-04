@@ -3,5 +3,8 @@
   "version": "0.0.1",
   "main": "index.js",
   "author": "Carlo <carlo.panzi@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lerna": "^4.0.0"
+  }
 }
