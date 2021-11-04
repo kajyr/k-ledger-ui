@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  body {
+      background: #ecf0f5;  
+      padding: 1em;
+  }
+
   * {
     box-sizing: border-box;
   }

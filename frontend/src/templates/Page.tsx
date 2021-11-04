@@ -1,21 +1,33 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-const Main = styled.main`
+const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
+
+  header {
+    margin-bottom: 15px;
+
+    h1 {
+      margin-bottom: 5px;
+    }
+  }
 `;
 
-const Body = styled.div`
-  padding: 1em;
+const Body = styled.main`
   flex: 1;
-  background: #ecf0f5;
 `;
 
-const Page: FC = ({ children }) => (
-  <Main>
+const Page: FC<{ filename: string }> = ({ filename, children }) => (
+  <Wrapper>
+    <header>
+      <h1>kLedger UI</h1>
+      <div>File in use: {filename}</div>
+    </header>
     <Body>{children}</Body>
-  </Main>
+    <footer>github</footer>
+  </Wrapper>
 );
 
 export default Page;

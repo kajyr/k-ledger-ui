@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "../" });
+require("dotenv");
 
 import colors from 'colors/safe';
 
