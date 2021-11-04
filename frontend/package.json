@@ -10,6 +10,7 @@
     "@mantine/dates": "^3.1.4",
     "@mantine/hooks": "^3.0.5",
     "@mantine/notifications": "^3.1.4",
+    "@radix-ui/react-icons": "^1.0.3",
     "@types/node": "^16.11.6",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",

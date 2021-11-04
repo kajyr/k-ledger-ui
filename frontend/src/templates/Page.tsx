@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { Title } from '@mantine/core';
+import { Button, Title } from '@mantine/core';
+import { GitHubLogoIcon } from '@radix-ui/react-icons';
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,6 +11,9 @@ const Wrapper = styled.div`
 
   header {
     margin-bottom: 15px;
+  }
+  footer {
+    margin-top: 15px;
   }
 `;
 
@@ -24,7 +28,23 @@ const Page: FC<{ filename: string }> = ({ filename, children }) => (
       <div>File in use: {filename}</div>
     </header>
     <Body>{children}</Body>
-    <footer>github</footer>
+    <footer>
+      <Button
+        component="a"
+        href="https://github.com/kajyr/k-ledger-ui"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="outline"
+        leftIcon={<GitHubLogoIcon />}
+        styles={{
+          leftIcon: {
+            marginRight: 15,
+          },
+        }}
+      >
+        Source Code
+      </Button>
+    </footer>
   </Wrapper>
 );
 
