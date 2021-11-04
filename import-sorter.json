@@ -1,0 +1,67 @@
+{
+  "generalConfiguration": { "sortOnBeforeSave": true },
+  "importStringConfiguration": {
+    "maximumNumberOfImportExpressionsPerLine": {
+      "type": "newLineEachExpressionAfterCountLimitExceptIfOnlyOne",
+      "count": 120
+    }
+  },
+  "sortConfiguration": {
+    "customOrderingRules": {
+      "defaultOrderLevel": 80,
+      "defaultNumberOfEmptyLinesAfterGroup": 1,
+      "rules": [
+        {
+          "type": "importMember",
+          "regex": "^$",
+          "orderLevel": 2
+        },
+        {
+          "regex": "^(prop|styled|react)",
+          "orderLevel": 5
+        },
+        {
+          "regex": "^(helpers|hooks|actions)/",
+          "orderLevel": 20
+        },
+        {
+          "regex": "^atoms/",
+          "orderLevel": 30
+        },
+        {
+          "regex": "^molecules/",
+          "orderLevel": 35
+        },
+        {
+          "regex": "^organisms/",
+          "orderLevel": 40
+        },
+        {
+          "regex": "^templates/",
+          "orderLevel": 45
+        },
+        {
+          "regex": "^pages/",
+          "orderLevel": 50
+        },
+        {
+          "regex": "^[@]",
+          "orderLevel": 60
+        },
+        {
+          "regex": "^../",
+          "orderLevel": 90
+        },
+        {
+          "regex": "^./$",
+          "orderLevel": 110
+        },
+        {
+          "regex": "^[.]",
+          "orderLevel": 100
+        }
+      ]
+    },
+    "removeUnusedImports": true
+  }
+}

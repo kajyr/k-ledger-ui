@@ -1,0 +1,16 @@
+{
+  "npmClient": "yarn",
+  "packages": ["frontend", "backend"],
+  "version": "0.0.1",
+  "command": {
+    "publish": {
+      "message": "chore(release): publish",
+      "allowBranch": "master",
+      "ignoreChanges": ["*.test.js", "*.test.ts", "*.test.tsx", "*.md"],
+      "conventionalCommits": true
+    },
+    "version": {
+      "conventionalCommits": true
+    }
+  }
+}

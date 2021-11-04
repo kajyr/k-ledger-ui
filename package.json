@@ -1,0 +1,7 @@
+{
+  "name": "k-ledger-ui",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Carlo <carlo.panzi@gmail.com>",
+  "license": "MIT"
+}

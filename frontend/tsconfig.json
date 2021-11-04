@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "paths": {
+      "helpers/*": ["helpers/*"]
+    },
+    "lib": ["es2019", "dom", "dom.iterable"],
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5",
+    "types": ["jest", "node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
