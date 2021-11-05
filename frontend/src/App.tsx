@@ -12,7 +12,6 @@ const App: FC = () => {
     fetch("/api/bootstrap").then((res) => res.json())
   );
 
-  console.log(isLoading, data);
   if (isLoading) {
     return <Loader />;
   }

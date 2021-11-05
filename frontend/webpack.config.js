@@ -10,7 +10,7 @@ const frontendSrc = path.resolve(__dirname, "src");
 
 const plugins = [
   new webpack.DefinePlugin({
-    APP_VERSION: JSON.stringify(pkg.version),
+    __VERSION__: JSON.stringify(pkg.version),
   }),
   new HtmlWebpackPlugin({
     template: path.resolve(frontendSrc, "index.html"),

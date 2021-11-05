@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { Button, Title } from '@mantine/core';
+import { Badge, Button, Divider, Group, Title } from '@mantine/core';
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
 
 const Wrapper = styled.div`
@@ -29,21 +29,25 @@ const Page: FC<{ filename: string }> = ({ filename, children }) => (
     </header>
     <Body>{children}</Body>
     <footer>
-      <Button
-        component="a"
-        href="https://github.com/kajyr/k-ledger-ui"
-        target="_blank"
-        rel="noopener noreferrer"
-        variant="outline"
-        leftIcon={<GitHubLogoIcon />}
-        styles={{
-          leftIcon: {
-            marginRight: 15,
-          },
-        }}
-      >
-        Source Code
-      </Button>
+      <Group position="left">
+        <Badge>v{__VERSION__}</Badge>
+        <Divider orientation="vertical" mx="sm" />
+        <Button
+          component="a"
+          href="https://github.com/kajyr/k-ledger-ui"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="outline"
+          leftIcon={<GitHubLogoIcon />}
+          styles={{
+            leftIcon: {
+              marginRight: 15,
+            },
+          }}
+        >
+          Source Code
+        </Button>
+      </Group>
     </footer>
   </Wrapper>
 );
