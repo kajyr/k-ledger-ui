@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/kajyr/diario.blue/compare/v0.1.0...v0.1.1) (2021-11-05)
+
+
+### Bug Fixes
+
+* fixed amount/account spacing ([c295f55](https://github.com/kajyr/diario.blue/commit/c295f55b2e726ead643e70b6f45ebd0c5cdde0ce))
+* Viewport for mobiles ([90e402b](https://github.com/kajyr/diario.blue/commit/90e402ba705bc50f10cfda9040124954fdcafdb3))
+
+
+
+
+
 # 0.1.0 (2021-11-04)
 
 
