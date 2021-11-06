@@ -4,13 +4,14 @@ import clearTransaction from 'helpers/clear-transaction';
 
 import { Button, Code, Group, Modal } from '@mantine/core';
 
-import { formatTransaction, Transaction } from 'pta-js';
+import { formatTransaction, Transaction } from 'pta-journal';
 
 const ConfirmationModal: FC<{
   data: Transaction;
   onCancel: () => void;
   onConfirm: (data: Transaction) => void;
 }> = ({ data, onCancel, onConfirm }) => {
+  console.log(data);
   const clean = clearTransaction(data);
   const trxstr = formatTransaction(clean);
   return (

@@ -1,4 +1,4 @@
-import { filename } from '../dal';
+import { filename, readFile } from '../dal';
 
 export default function (fastify, opts, done) {
   const routes = [
@@ -6,7 +6,12 @@ export default function (fastify, opts, done) {
       method: "GET",
       url: `/api/bootstrap`,
       handler: async function () {
-        return { file: filename };
+        const data = await readFile();
+        return {
+          file: filename,
+          accounts: data.accounts,
+          commodities: data.commodities,
+        };
       },
     },
   ];

@@ -7,19 +7,22 @@ import Page from 'templates/Page';
 
 import Dashboard from 'pages/dashboard';
 
+import { Api } from 'types';
+
 const App: FC = () => {
-  const { isLoading, error, data } = useQuery("bootstrap", () =>
-    fetch("/api/bootstrap").then((res) => res.json())
+  const { isLoading, error, data } = useQuery<Api.BootstrapResponse>(
+    "bootstrap",
+    () => fetch("/api/bootstrap").then((res) => res.json())
   );
 
-  if (isLoading) {
+  if (isLoading || !data) {
     return <Loader />;
   }
 
   return (
     <>
       <Page filename={data.file}>
-        <Dashboard />
+        <Dashboard journal={data} />
       </Page>
     </>
   );

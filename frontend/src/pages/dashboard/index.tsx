@@ -3,18 +3,19 @@ import React, { FC, useState } from 'react';
 import { callApi } from 'helpers/api';
 import clearTransaction from 'helpers/clear-transaction';
 
-import { Button, Group, LoadingOverlay, Paper, TextInput, Title } from '@mantine/core';
+import { Autocomplete, Button, Group, LoadingOverlay, Paper, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
 
-import { Transaction } from 'pta-js';
+import { Transaction } from 'pta-journal';
+import { Api } from 'types';
 
 import ConfirmationModal from './confirmation-modal';
 
-const EMPTY_ENTRY = { account: "", amount: "" };
+const EMPTY_ENTRY = { account: "", amount: "", commodity: "" };
 
-const Dashboard: FC = () => {
+const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
   const notifications = useNotifications();
 
   const { onSubmit, values, setFieldValue, setValues, reset } = useForm({
@@ -109,34 +110,45 @@ const Dashboard: FC = () => {
           />
           {values.entries.map((entry, i) => (
             <Group style={{ marginTop: 25, alignItems: "center" }} key={i}>
-              <TextInput
-                label="Account"
+              <Autocomplete
+                placeholder="Account"
                 value={entry.account}
-                style={{ flex: 1 }}
-                onChange={(event) =>
-                  updateRow(i, "account", event.currentTarget.value)
+                style={{ flex: 2 }}
+                data={journal.accounts}
+                filter={(value, item) =>
+                  item.value.toLowerCase().includes(value.toLowerCase().trim())
                 }
+                onChange={(value) => updateRow(i, "account", value)}
               />
               <TextInput
-                label="Amount"
+                placeholder="Amount"
                 value={entry.amount}
                 style={{ flex: 1 }}
                 onChange={(event) =>
                   updateRow(i, "amount", event.currentTarget.value)
                 }
               />
-              <Button compact style={{ marginTop: "30px" }} onClick={addRow}>
+              <Autocomplete
+                placeholder="Commodity"
+                value={entry.commodity}
+                style={{ flex: 1 }}
+                onChange={(value) => updateRow(i, "commodity", value)}
+                data={journal.commodities}
+                filter={(value, item) =>
+                  item.value.toLowerCase().includes(value.toLowerCase().trim())
+                }
+              />
+              <Button compact onClick={addRow} size="md">
                 +
               </Button>
-              {i !== 0 && (
-                <Button
-                  compact
-                  style={{ marginTop: "30px" }}
-                  onClick={removeRow(i)}
-                >
-                  -
-                </Button>
-              )}
+              <Button
+                disabled={i === 0}
+                compact
+                onClick={removeRow(i)}
+                size="md"
+              >
+                -
+              </Button>
             </Group>
           ))}
           <Group position="right" style={{ marginTop: 25 }}>
