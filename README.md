@@ -6,4 +6,25 @@ Currently it just supports adding a simple transaction: it suggests the remainin
 
 It suggests also already used accounts and commodities, to make typing from a mobile faster.
 
-![ww](./docs/screen.png)
+
+
+## Setup
+
+The easiest way to run this app is by using Docker.
+
+You can run:
+
+```
+docker run -d \
+	-v "<your folder>:/app/data" \
+	-e K_LEDGER_FILE="/app/data/<your file>"  \
+	-p 4445:4445 kajyr/k-ledger-ui 
+```
+
+Then you can browse `http://<your IP>:4445` or even better, setup nginx proxy and https.
+
+## Screenshots
+
+| Mobile viewport          |  Tablet viewport         |
+:-------------------------:|:-------------------------:
+   ![](./docs/mobile.png)  |  ![](./docs/tablet.png)
