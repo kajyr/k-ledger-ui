@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react';
 
 import { callApi } from 'helpers/api';
-import clearTransaction from 'helpers/clear-transaction';
 
-import { Autocomplete, Button, Group, LoadingOverlay, Paper, TextInput, Title } from '@mantine/core';
+import { Button, Group, LoadingOverlay, Paper, TextInput, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
@@ -12,6 +11,7 @@ import { Transaction } from 'pta-journal';
 import { Api } from 'types';
 
 import ConfirmationModal from './confirmation-modal';
+import EntryRow from './entry-row';
 
 const EMPTY_ENTRY = { account: "", amount: "", commodity: "" };
 
@@ -22,7 +22,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
     initialValues: {
       date: new Date(),
       description: "",
-      entries: [EMPTY_ENTRY],
+      entries: [EMPTY_ENTRY, EMPTY_ENTRY],
     },
   });
 
@@ -40,17 +40,19 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
     }));
   }
 
-  function updateRow(idx: number, field: string, value: string) {
-    setValues((state) => ({
-      ...state,
-      entries: state.entries.map((e, i) => {
-        if (i !== idx) {
-          return e;
-        }
+  function updateRow(idx: number) {
+    return (field: string, value: string) => {
+      setValues((state) => ({
+        ...state,
+        entries: state.entries.map((e, i) => {
+          if (i !== idx) {
+            return e;
+          }
 
-        return { ...e, [field]: value };
-      }),
-    }));
+          return { ...e, [field]: value };
+        }),
+      }));
+    };
   }
 
   function removeRow(idx: number) {
@@ -96,12 +98,14 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
           <LoadingOverlay visible={showOverlay} />
           <Title order={2}>Add</Title>
           <DatePicker
+            style={{ marginTop: "15px" }}
             placeholder="Pick a date"
             label="Date"
             value={values.date}
             onChange={(date) => date && setFieldValue("date", date)}
           />
           <TextInput
+            style={{ marginTop: "15px" }}
             label="Description"
             value={values.description}
             onChange={(event) =>
@@ -109,51 +113,22 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
             }
           />
           {values.entries.map((entry, i) => (
-            <Group style={{ marginTop: 25, alignItems: "center" }} key={i}>
-              <Autocomplete
-                placeholder="Account"
-                value={entry.account}
-                style={{ flex: 2 }}
-                data={journal.accounts}
-                filter={(value, item) =>
-                  item.value.toLowerCase().includes(value.toLowerCase().trim())
-                }
-                onChange={(value) => updateRow(i, "account", value)}
-              />
-              <TextInput
-                placeholder="Amount"
-                value={entry.amount}
-                style={{ flex: 1 }}
-                onChange={(event) =>
-                  updateRow(i, "amount", event.currentTarget.value)
-                }
-              />
-              <Autocomplete
-                placeholder="Commodity"
-                value={entry.commodity}
-                style={{ flex: 1 }}
-                onChange={(value) => updateRow(i, "commodity", value)}
-                data={journal.commodities}
-                filter={(value, item) =>
-                  item.value.toLowerCase().includes(value.toLowerCase().trim())
-                }
-              />
-              <Button compact onClick={addRow} size="md">
-                +
-              </Button>
-              <Button
-                disabled={i === 0}
-                compact
-                onClick={removeRow(i)}
-                size="md"
-              >
-                -
-              </Button>
-            </Group>
+            <EntryRow
+              accounts={journal.accounts}
+              canDelete={i !== 0}
+              commodities={journal.commodities}
+              entry={entry}
+              key={i}
+              removeRow={removeRow(i)}
+              updateRow={updateRow(i)}
+            />
           ))}
-          <Group position="right" style={{ marginTop: 25 }}>
+          <Group position="right" style={{ marginTop: "25px" }}>
+            <Button variant="outline" onClick={addRow}>
+              Add row
+            </Button>
             <Button color="blue" type="submit">
-              Add
+              Save
             </Button>
           </Group>
         </form>

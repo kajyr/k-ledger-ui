@@ -3799,10 +3799,10 @@ psl@^1.1.33:
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.8.0.tgz#9326f8bcfb013adcc005fdff056acce020e51c24"
   integrity sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==
 
-pta-journal@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/pta-journal/-/pta-journal-0.3.1.tgz#124a960112b68bc7f2f2a914a69c90d3075f7dce"
-  integrity sha512-NUi0NgeGAmK2FVedNe0YHu+YlKWZUVnW/XYHikEsL26j8CAmtclo9EjUcM+7THwzHA0D5ggiOrUFNvnQkrBVBg==
+pta-journal@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/pta-journal/-/pta-journal-0.4.0.tgz#de4f6cb94f8593f3beb8906fac805950c931a2fe"
+  integrity sha512-WutZ5ZJFDUrSQnSaCwcQlI0cH2CaodG6AuErNrWVPwYf5MaKLTnBccx/WC2oZ+Ndy2RyxDnIfZtCFcZnWVLHbQ==
   dependencies:
     split2 "^4.1.0"
 

@@ -11,7 +11,6 @@ const ConfirmationModal: FC<{
   onCancel: () => void;
   onConfirm: (data: Transaction) => void;
 }> = ({ data, onCancel, onConfirm }) => {
-  console.log(data);
   const clean = clearTransaction(data);
   const trxstr = formatTransaction(clean);
   return (
