@@ -7,24 +7,34 @@ import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
 
-import { Transaction } from 'pta-journal';
+import { Transaction, TransactionEntry } from 'pta-journal';
 import { Api } from 'types';
 
 import ConfirmationModal from './confirmation-modal';
 import EntryRow from './entry-row';
 
-const EMPTY_ENTRY = { account: "", amount: "", commodity: "" };
+const EMPTY_ENTRY: TransactionEntry = {
+  account: "",
+  amount: "",
+};
+
+function allValuesAreEqual<T>(values: T[]): T | undefined {
+  if (values.every((value) => value == null || value === values[0])) {
+    return values[0];
+  }
+}
 
 const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
   const notifications = useNotifications();
 
-  const { onSubmit, values, setFieldValue, setValues, reset } = useForm({
-    initialValues: {
-      date: new Date(),
-      description: "",
-      entries: [EMPTY_ENTRY, EMPTY_ENTRY],
-    },
-  });
+  const { onSubmit, values, setFieldValue, setValues, reset } =
+    useForm<Transaction>({
+      initialValues: {
+        date: new Date(),
+        description: "",
+        entries: [EMPTY_ENTRY, EMPTY_ENTRY],
+      },
+    });
 
   const [modalOpen, setModalOpen] = useState(false);
   const [showOverlay, setOverlay] = useState(false);
@@ -88,6 +98,22 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
     });
   }
 
+  const outBalance = values.entries.reduce(
+    (acc, e) => acc + Number(e.amount),
+    0
+  );
+
+  const amountPlaceholder =
+    !isNaN(outBalance) && outBalance !== 0
+      ? (outBalance * -1).toString()
+      : null;
+
+  const singleCommodity = allValuesAreEqual(
+    values.entries.map((e) => e.commodity)
+  );
+
+  console.log("suggestedCommodity", singleCommodity);
+
   return (
     <div>
       <Paper padding="md" shadow="sm" component="section">
@@ -121,6 +147,8 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
               key={i}
               removeRow={removeRow(i)}
               updateRow={updateRow(i)}
+              amountPlaceholder={amountPlaceholder}
+              suggestedCommodity={singleCommodity}
             />
           ))}
           <Group position="right" style={{ marginTop: "25px" }}>

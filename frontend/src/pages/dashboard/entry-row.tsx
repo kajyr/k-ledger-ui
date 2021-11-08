@@ -21,12 +21,23 @@ const useStyles = createStyles((theme) => {
 
 const EntryRow: FC<{
   accounts: string[];
+  amountPlaceholder: string | null;
   canDelete: boolean;
   commodities: string[];
   entry: TransactionEntry;
+  suggestedCommodity: string | undefined;
   removeRow: () => void;
   updateRow: (field: string, value: string) => void;
-}> = ({ accounts, canDelete, commodities, entry, removeRow, updateRow }) => {
+}> = ({
+  accounts,
+  amountPlaceholder,
+  canDelete,
+  commodities,
+  entry,
+  suggestedCommodity,
+  removeRow,
+  updateRow,
+}) => {
   const { classes } = useStyles();
   return (
     <Group className={classes.wrapper}>
@@ -41,13 +52,13 @@ const EntryRow: FC<{
         onChange={(value) => updateRow("account", value)}
       />
       <TextInput
-        placeholder="Amount"
+        placeholder={amountPlaceholder || "Amount"}
         value={entry.amount}
         style={{ flex: 2 }}
         onChange={(event) => updateRow("amount", event.currentTarget.value)}
       />
       <Autocomplete
-        placeholder="Commodity"
+        placeholder={suggestedCommodity || "Commodity"}
         value={entry.commodity}
         style={{ flex: 1 }}
         onChange={(value) => updateRow("commodity", value)}
