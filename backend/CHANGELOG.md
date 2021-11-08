@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/kajyr/diario.blue/compare/v0.2.0...v0.3.0) (2021-11-08)
+
+
+### Features
+
+* cleanup of the ui after the first tests ([bd607b8](https://github.com/kajyr/diario.blue/commit/bd607b80eaea1badc3c1e8b57f7fd7a8fc15ebf2))
+
+
+
+
+
 # [0.2.0](https://github.com/kajyr/diario.blue/compare/v0.1.2...v0.2.0) (2021-11-06)
 
 
