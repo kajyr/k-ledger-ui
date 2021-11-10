@@ -12,17 +12,11 @@ export function addTransaction(data: Transaction): Promise<void> {
   return fs.appendFile(fullFile, `\n${formatTransaction(data)}`, "utf8");
 }
 
-let fileContents: ParseResult;
-
 export function readFile(): Promise<ParseResult> {
-  if (fileContents) {
-    return Promise.resolve(fileContents);
-  }
-
   const readStream = createReadStream(fullFile);
 
   return parse(readStream).then((contents) => {
-    fileContents = contents;
+    readStream.close();
     return contents;
   });
 }
