@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/kajyr/diario.blue/compare/v0.3.0...v1.0.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* the journal file is not cached anymore. ([bfce005](https://github.com/kajyr/diario.blue/commit/bfce005d1e305364871a8e218490304012090149))
+
+
+### Features
+
+* Updated pta-journal - support for virtual postings ([8167a13](https://github.com/kajyr/diario.blue/commit/8167a131164ba5835b9ce20264e1181123855e89))
+
+
+
+
+
 # [0.3.0](https://github.com/kajyr/diario.blue/compare/v0.2.0...v0.3.0) (2021-11-08)
 
 
