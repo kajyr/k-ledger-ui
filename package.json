@@ -6,5 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "build": "lerna run build",
+    "prebuild": "lerna bootstrap"
   }
 }

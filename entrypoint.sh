@@ -4,7 +4,7 @@ set -e
 
 if [ "$1" = 'kledger-ui' ]; then
     cd backend
-    NODE_ENV="production" yarn start
+    NODE_ENV="production" npm start
 fi
 
 exec "$@"

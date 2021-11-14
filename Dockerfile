@@ -2,13 +2,13 @@ FROM node:14-alpine AS builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock lerna.json ./
-RUN yarn --pure-lockfile
+COPY package.json package-lock.json lerna.json ./
+RUN npm install
 ENV NODE_ENV production
 
 COPY . .
 
-RUN yarn lerna bootstrap && yarn lerna run build
+RUN npm run build
 
 
 # FROM gcr.io/distroless/nodejs:14

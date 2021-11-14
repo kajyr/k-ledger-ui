@@ -20,7 +20,7 @@
     "buffer": "^6.0.3",
     "dayjs": "^1.10.7",
     "html-webpack-plugin": "^5.3.1",
-    "pta-journal": "^0.5.0",
+    "pta-journal": "^0.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-query": "^3.31.0",
@@ -37,10 +37,6 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
-    "eslint": "^8.1.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-jest": "^25.2.2",
-    "eslint-plugin-react": "^7.21.5",
     "fetch-mock": "^9.10.7",
     "jest": "^27.3.1",
     "jest-transform-stub": "^2.0.0"
