@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/kajyr/k-ledger-ui/compare/v1.0.0...v1.0.1) (2021-11-18)
+
+
+### Bug Fixes
+
+* Improved page padding ([eedeb56](https://github.com/kajyr/k-ledger-ui/commit/eedeb56484f2664f540cacd59c5f7f5083597089))
+
+
+
+
+
 # [1.0.0](https://github.com/kajyr/k-ledger-ui/compare/v0.3.0...v1.0.0) (2021-11-10)
 
 
