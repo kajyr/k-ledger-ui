@@ -20,7 +20,7 @@
     "buffer": "^6.0.3",
     "dayjs": "^1.10.7",
     "html-webpack-plugin": "^5.3.1",
-    "pta-journal": "^0.5.1",
+    "pta-journal": "^0.5.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-query": "^3.31.0",

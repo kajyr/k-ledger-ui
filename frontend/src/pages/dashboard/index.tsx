@@ -12,6 +12,7 @@ import { Api } from 'types';
 
 import ConfirmationModal from './confirmation-modal';
 import EntryRow from './entry-row';
+import PaymentAccount from './payment-acct-row';
 
 const EMPTY_ENTRY: TransactionEntry = {
   account: "",
@@ -24,15 +25,26 @@ function allValuesAreEqual<T>(values: T[]): T | undefined {
   }
 }
 
+type FormData = Transaction & {
+  payingAccount?: string;
+};
+
+function prepareSubmitData(data: FormData): Transaction {
+  const { payingAccount, ...trx } = data;
+  if (payingAccount) {
+    trx.entries.push({ account: payingAccount });
+  }
+  return trx;
+}
 const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
   const notifications = useNotifications();
 
   const { onSubmit, values, setFieldValue, setValues, reset } =
-    useForm<Transaction>({
+    useForm<FormData>({
       initialValues: {
         date: new Date(),
         description: "",
-        entries: [EMPTY_ENTRY, EMPTY_ENTRY],
+        entries: [EMPTY_ENTRY],
       },
     });
 
@@ -112,8 +124,6 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
     values.entries.map((e) => e.commodity)
   );
 
-  console.log("suggestedCommodity", singleCommodity);
-
   return (
     <div>
       <Paper padding="md" shadow="sm" component="section">
@@ -132,7 +142,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
           />
           <TextInput
             style={{ marginTop: "15px" }}
-            label="Description"
+            label="Payee / Description"
             value={values.description}
             onChange={(event) =>
               setFieldValue("description", event.currentTarget.value)
@@ -151,6 +161,11 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
               suggestedCommodity={singleCommodity}
             />
           ))}
+          <PaymentAccount
+            accounts={journal.accounts}
+            value={values.payingAccount}
+            onChange={(value) => setFieldValue("payingAccount", value)}
+          />
           <Group position="right" style={{ marginTop: "25px" }}>
             <Button variant="outline" onClick={addRow}>
               Add row
@@ -163,7 +178,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
       </Paper>
       {modalOpen && (
         <ConfirmationModal
-          data={values}
+          data={prepareSubmitData(values)}
           onCancel={() => setModalOpen(false)}
           onConfirm={handleModalConfirm}
         />

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Autocomplete, Button, createStyles, Group, Space, TextInput } from '@mantine/core';
 
-import { TransactionEntry } from 'pta-journal';
+import { Posting } from 'pta-journal';
 
 const useStyles = createStyles((theme) => {
   return {
@@ -24,7 +24,7 @@ const EntryRow: FC<{
   amountPlaceholder: string | null;
   canDelete: boolean;
   commodities: string[];
-  entry: TransactionEntry;
+  entry: Posting;
   suggestedCommodity: string | undefined;
   removeRow: () => void;
   updateRow: (field: string, value: string) => void;
