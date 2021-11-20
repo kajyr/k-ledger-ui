@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/kajyr/k-ledger-ui/compare/v1.0.1...v1.1.0) (2021-11-20)
+
+
+### Features
+
+* Added a "payment account" shortcut entry ([f4296b8](https://github.com/kajyr/k-ledger-ui/commit/f4296b8a5e2a61e8f499bff4b2d1ac325dd5f157))
+
+
+
+
+
 ## [1.0.1](https://github.com/kajyr/k-ledger-ui/compare/v1.0.0...v1.0.1) (2021-11-18)
 
 
