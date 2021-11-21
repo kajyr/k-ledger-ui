@@ -1,4 +1,5 @@
 import { filename, readFile } from '../dal';
+import getAccountsSorted from '../helpers/get-accounts-sorted';
 
 export default function (fastify, opts, done) {
   const routes = [
@@ -9,7 +10,7 @@ export default function (fastify, opts, done) {
         const data = await readFile();
         return {
           file: filename,
-          accounts: data.accounts,
+          accounts: getAccountsSorted(data.transactions),
           commodities: data.commodities,
         };
       },
