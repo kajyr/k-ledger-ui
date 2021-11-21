@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/kajyr/diario.blue/compare/v1.1.0...v1.2.0) (2021-11-21)
+
+
+### Features
+
+* accounts are returned sorted by usage ([4b2f637](https://github.com/kajyr/diario.blue/commit/4b2f6371a360d1089d22fade19e7ca7a93812aa0))
+
+
+
+
+
 # [1.1.0](https://github.com/kajyr/diario.blue/compare/v1.0.1...v1.1.0) (2021-11-20)
 
 
