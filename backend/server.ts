@@ -4,6 +4,7 @@ import colors from 'colors/safe';
 
 import app from './app';
 import { fullFile } from './dal';
+import pkg from './package.json';
 import { Server } from './types';
 
 const PORT = 4445;
@@ -49,9 +50,13 @@ const init = async () => {
     process.exit(1);
   }
 
+  console.log("----");
+  console.log("Server version:", pkg.version);
+  console.log("Journal file:", fullFile);
+  console.log();
+
   //@ts-ignore This is added by a fastify plugin
   logRoutes(server.routes);
-  console.log("Journal file:", fullFile);
 };
 
 init();
