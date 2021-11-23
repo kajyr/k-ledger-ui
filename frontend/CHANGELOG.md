@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/kajyr/diario.blue/compare/v1.2.0...v1.2.1) (2021-11-23)
+
+
+### Bug Fixes
+
+* Its possible to select also non assets as the payment account ([4cfbd61](https://github.com/kajyr/diario.blue/commit/4cfbd61e04bab9b8a2b5bd323bb0bcf20bd16c80))
+
+
+
+
+
 # [1.1.0](https://github.com/kajyr/diario.blue/compare/v1.0.1...v1.1.0) (2021-11-20)
 
 
