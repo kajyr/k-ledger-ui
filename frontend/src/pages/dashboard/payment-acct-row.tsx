@@ -31,7 +31,7 @@ const PaymentAccount: FC<{
         label="Paying account"
         placeholder="Account"
         value={value || ""}
-        data={getAssets(accounts)}
+        data={accounts}
         style={{ flex: 1 }}
         filter={(value, item) =>
           item.value.toLowerCase().includes(value.toLowerCase().trim())
