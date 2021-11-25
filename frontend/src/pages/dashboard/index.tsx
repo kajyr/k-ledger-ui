@@ -7,14 +7,14 @@ import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
 
-import { Transaction, TransactionEntry } from 'pta-journal';
+import { Posting, Transaction } from 'pta-journal';
 import { Api } from 'types';
 
 import ConfirmationModal from './confirmation-modal';
 import EntryRow from './entry-row';
 import PaymentAccount from './payment-acct-row';
 
-const EMPTY_ENTRY: TransactionEntry = {
+const EMPTY_ENTRY: Posting = {
   account: "",
   amount: "",
 };
