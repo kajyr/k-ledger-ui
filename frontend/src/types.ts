@@ -3,5 +3,6 @@ export namespace Api {
     file: string;
     accounts: string[];
     commodities: string[];
+    payees: string[];
   };
 }

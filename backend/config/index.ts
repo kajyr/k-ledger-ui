@@ -1,5 +1,19 @@
+import { isTransaction, Journal, Transaction } from 'pta-journal';
+
 import { filename, readFile } from '../dal';
-import getAccountsSorted from '../helpers/get-accounts-sorted';
+import { unique } from '../helpers/array';
+
+function isTransactionWithPayee(data: any): data is Transaction {
+  return isTransaction(data) && !!data.description;
+}
+
+function getPayees(trxs: Journal): string[] {
+  return unique(
+    trxs
+      .filter(isTransactionWithPayee)
+      .map((trx: Transaction) => trx.description || "")
+  );
+}
 
 export default function (fastify, opts, done) {
   const routes = [
@@ -10,8 +24,9 @@ export default function (fastify, opts, done) {
         const data = await readFile();
         return {
           file: filename,
-          accounts: getAccountsSorted(data.transactions),
+          accounts: data.accounts,
           commodities: data.commodities,
+          payees: getPayees(data.journal),
         };
       },
     },

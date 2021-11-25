@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import { callApi } from 'helpers/api';
 
-import { Button, Group, LoadingOverlay, Paper, TextInput, Title } from '@mantine/core';
+import { Autocomplete, Button, Group, LoadingOverlay, Paper, Text, Title } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
@@ -133,6 +133,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
         >
           <LoadingOverlay visible={showOverlay} />
           <Title order={2}>Add</Title>
+          <Text size="md">Date: Today</Text>
           <DatePicker
             style={{ marginTop: "15px" }}
             placeholder="Pick a date"
@@ -140,12 +141,14 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
             value={values.date}
             onChange={(date) => date && setFieldValue("date", date)}
           />
-          <TextInput
-            style={{ marginTop: "15px" }}
+          <Autocomplete
             label="Payee / Description"
             value={values.description}
-            onChange={(event) =>
-              setFieldValue("description", event.currentTarget.value)
+            style={{ marginTop: "15px" }}
+            onChange={(value) => setFieldValue("description", value)}
+            data={journal.payees}
+            filter={(value, item) =>
+              item.value.toLowerCase().includes(value.toLowerCase().trim())
             }
           />
           {values.entries.map((entry, i) => (
