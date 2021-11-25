@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/kajyr/diario.blue/compare/v1.2.1...v1.3.0) (2021-11-25)
+
+
+### Bug Fixes
+
+* Account selection from pta-journal ([69ed80d](https://github.com/kajyr/diario.blue/commit/69ed80d0e115614f3931416438074e907576b730))
+
+
+### Features
+
+* Date selection moved to a popover ([e144944](https://github.com/kajyr/diario.blue/commit/e14494437389de80705eb04e9e1f3ecd9464cec3))
+* Payees/description autocomplete ([393015a](https://github.com/kajyr/diario.blue/commit/393015a50d72d2b25ec6c269d9a8ddb9e72cc85f))
+
+
+
+
+
 ## [1.2.1](https://github.com/kajyr/k-ledger-ui/compare/v1.2.0...v1.2.1) (2021-11-23)
 
 
