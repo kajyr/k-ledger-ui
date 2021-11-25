@@ -1,9 +1,10 @@
 import React, { FC, useState } from 'react';
 
 import { callApi } from 'helpers/api';
+import { isToday } from 'helpers/dates';
 
-import { Autocomplete, Button, Group, LoadingOverlay, Paper, Text, Title } from '@mantine/core';
-import { DatePicker } from '@mantine/dates';
+import { Autocomplete, Button, Group, LoadingOverlay, Paper, Popover, Text, Title } from '@mantine/core';
+import { Calendar } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
 
@@ -50,6 +51,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [showOverlay, setOverlay] = useState(false);
+  const [dateOpen, setDateOpen] = useState(false);
 
   const handleSubmit = () => {
     setModalOpen(true);
@@ -124,6 +126,10 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
     values.entries.map((e) => e.commodity)
   );
 
+  const dateStr = isToday(new Date(values.date))
+    ? "Today"
+    : values.date.toLocaleDateString();
+
   return (
     <div>
       <Paper padding="md" shadow="sm" component="section">
@@ -133,14 +139,36 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
         >
           <LoadingOverlay visible={showOverlay} />
           <Title order={2}>Add</Title>
-          <Text size="md">Date: Today</Text>
-          <DatePicker
-            style={{ marginTop: "15px" }}
-            placeholder="Pick a date"
-            label="Date"
-            value={values.date}
-            onChange={(date) => date && setFieldValue("date", date)}
-          />
+
+          <Popover
+            opened={dateOpen}
+            onClose={() => setDateOpen(false)}
+            target={
+              <Text size="sm" style={{ marginTop: "15px" }}>
+                Date:{" "}
+                <Button
+                  onClick={() => setDateOpen((o) => !o)}
+                  size="xs"
+                  compact
+                  variant="outline"
+                >
+                  {dateStr}
+                </Button>
+              </Text>
+            }
+            styles={{ body: { width: 260 } }}
+            withArrow
+          >
+            <div style={{ display: "flex" }}>
+              <Calendar
+                value={values.date}
+                onChange={(date) => {
+                  date && setFieldValue("date", date);
+                  setDateOpen(false);
+                }}
+              />
+            </div>
+          </Popover>
           <Autocomplete
             label="Payee / Description"
             value={values.description}
