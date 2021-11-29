@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import clearTransaction from 'helpers/clear-transaction';
+import fixer from 'helpers/fix-transaction';
 
 import { Button, Code, Group, Modal } from '@mantine/core';
 
@@ -11,7 +11,7 @@ const ConfirmationModal: FC<{
   onCancel: () => void;
   onConfirm: (data: Transaction) => void;
 }> = ({ data, onCancel, onConfirm }) => {
-  const clean = clearTransaction(data);
+  const clean = fixer(data);
   const trxstr = formatTransaction(clean);
   return (
     <Modal opened={true} onClose={onCancel} title="Confirm transaction">
