@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/kajyr/k-ledger-ui/compare/v1.3.0...v1.3.1) (2021-12-06)
+
+
+### Bug Fixes
+
+* Removed space after colons in account names. ([d9916cb](https://github.com/kajyr/k-ledger-ui/commit/d9916cb01ef6136f557fb88cd30a1aa46ac09980))
+* Updated code deps to fix issues ([8ac3df0](https://github.com/kajyr/k-ledger-ui/commit/8ac3df09b5c9391c3a9afdae224e1cc31f9e2830))
+
+
+
+
+
 # [1.3.0](https://github.com/kajyr/diario.blue/compare/v1.2.1...v1.3.0) (2021-11-25)
 
 
