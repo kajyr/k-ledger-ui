@@ -2,11 +2,10 @@ import React, { FC, useState } from 'react';
 
 import { callApi } from 'helpers/api';
 import { isToday } from 'helpers/dates';
-import getDescriptions from 'helpers/get-descriptions';
 
 import AsyncAutocomplete from 'atoms/async-autocomplete';
 
-import { Button, Group, LoadingOverlay, Paper, Popover, Text, Title } from '@mantine/core';
+import { Button, Chip, Chips, Group, LoadingOverlay, Paper, Popover, Text, Title } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
@@ -17,11 +16,14 @@ import { Api } from 'types';
 import ConfirmationModal from './confirmation-modal';
 import EntryRow from './entry-row';
 import PaymentAccount from './payment-acct-row';
+import prepareSubmitData from './prepare-submit';
 
 const EMPTY_ENTRY: Posting = {
   account: "",
   amount: "",
 };
+
+export const OPTION_SPLITWISE = "splitwise";
 
 function allValuesAreEqual<T>(values: T[]): T | undefined {
   if (values.every((value) => value == null || value === values[0])) {
@@ -29,19 +31,13 @@ function allValuesAreEqual<T>(values: T[]): T | undefined {
   }
 }
 
-type FormData = Transaction & {
+export type FormData = Transaction & {
   payingAccount?: string;
 };
 
-function prepareSubmitData(data: FormData): Transaction {
-  const { payingAccount, ...trx } = data;
-  if (payingAccount) {
-    trx.entries.push({ account: payingAccount });
-  }
-  return trx;
-}
 const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
   const notifications = useNotifications();
+  const [options, setOptions] = useState<string[]>([]);
 
   const { onSubmit, values, setFieldValue, setValues, reset } =
     useForm<FormData>({
@@ -197,6 +193,16 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
             value={values.payingAccount}
             onChange={(value) => setFieldValue("payingAccount", value)}
           />
+          <Chips
+            style={{ marginTop: "25px" }}
+            size="xs"
+            radius="sm"
+            multiple
+            value={options}
+            onChange={setOptions}
+          >
+            <Chip value={OPTION_SPLITWISE}>Split with Splitwise</Chip>
+          </Chips>
           <Group position="right" style={{ marginTop: "25px" }}>
             <Button variant="outline" onClick={addRow}>
               Add row
@@ -209,7 +215,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
       </Paper>
       {modalOpen && (
         <ConfirmationModal
-          data={prepareSubmitData(values)}
+          data={prepareSubmitData(values, options)}
           onCancel={() => setModalOpen(false)}
           onConfirm={handleModalConfirm}
         />

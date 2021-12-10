@@ -12,9 +12,8 @@ const AsyncAutocomplete: FC<Props> = ({ endpoint, ...props }) => {
     [endpoint, props.value],
     () => {
       const val = props.value || "";
-      if (val.length > 1) {
-        return fetch(`${endpoint}/${props.value}`).then((res) => res.json());
-      }
+      return fetch(`${endpoint}/${props.value}`).then((res) => res.json());
+
       return Promise.resolve([]);
     },
     { retry: false }
