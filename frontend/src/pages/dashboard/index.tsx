@@ -2,8 +2,11 @@ import React, { FC, useState } from 'react';
 
 import { callApi } from 'helpers/api';
 import { isToday } from 'helpers/dates';
+import getDescriptions from 'helpers/get-descriptions';
 
-import { Autocomplete, Button, Group, LoadingOverlay, Paper, Popover, Text, Title } from '@mantine/core';
+import AsyncAutocomplete from 'atoms/async-autocomplete';
+
+import { Button, Group, LoadingOverlay, Paper, Popover, Text, Title } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
@@ -169,15 +172,12 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
               />
             </div>
           </Popover>
-          <Autocomplete
+          <AsyncAutocomplete
             label="Payee / Description"
             value={values.description}
             style={{ marginTop: "15px" }}
             onChange={(value) => setFieldValue("description", value)}
-            data={journal.payees}
-            filter={(value, item) =>
-              item.value.toLowerCase().includes(value.toLowerCase().trim())
-            }
+            endpoint="/api/s/description"
           />
           {values.entries.map((entry, i) => (
             <EntryRow

@@ -2,14 +2,14 @@ import { createReadStream } from 'fs';
 import path from 'path';
 import { formatTransaction, parse, ParseResult, Transaction } from 'pta-journal';
 
-import fs from 'fs/promises';
+import { appendFile } from 'fs/promises';
 
 export const fullFile = path.resolve(process.env.K_LEDGER_FILE || "");
 
 export const filename = path.basename(fullFile);
 
 export function addTransaction(data: Transaction): Promise<void> {
-  return fs.appendFile(fullFile, `\n${formatTransaction(data)}`, "utf8");
+  return appendFile(fullFile, `\n${formatTransaction(data)}`, "utf8");
 }
 
 export function readFile(): Promise<ParseResult> {

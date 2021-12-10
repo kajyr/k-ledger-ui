@@ -9,6 +9,7 @@ async function build(opts = {}) {
   app.register(require("fastify-routes"));
 
   await app.register(require("./config"));
+  await app.register(require("./suggestions"));
   await app.register(require("./journal"));
 
   // Block other api
