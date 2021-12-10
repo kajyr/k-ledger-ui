@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/kajyr/k-ledger-ui/compare/v1.3.1...v1.4.0) (2021-12-10)
+
+
+### Features
+
+* Better server side suggestions for descriptions / payees ([3e4aa64](https://github.com/kajyr/k-ledger-ui/commit/3e4aa64d0c7ad90887794836db1d366401f51547))
+* split with splitwise option ([e2e217f](https://github.com/kajyr/k-ledger-ui/commit/e2e217f02cd8fc196cd9f3a46b55540c113c278a))
+
+
+
+
+
 ## [1.3.1](https://github.com/kajyr/diario.blue/compare/v1.3.0...v1.3.1) (2021-12-06)
 
 
