@@ -14,8 +14,12 @@ const spaces = (num: number): string => Array(num).join(" ");
 function logRoutes(routes: Server.FastifyRoutesMap) {
   console.log(colors.blue("Routes"));
 
-  // @ts-ignore routes is a ES6 Map
-  const obj = Object.fromEntries(routes);
+  const obj = Object.fromEntries(routes as any);
+
+  const lineLength = Object.keys(obj).reduce(
+    (val, url) => Math.max(val, url.length + 3),
+    20
+  );
 
   Object.keys(obj).forEach((url) => {
     const list = obj[url];
@@ -23,7 +27,10 @@ function logRoutes(routes: Server.FastifyRoutesMap) {
       .flatMap((m) => m.method)
       .sort((a, b) => a.localeCompare(b))
       .join(", ");
-    console.log(`${colors.blue(url)}${spaces(20 - url.length)}${methods}`);
+
+    console.log(
+      `${colors.blue(url)}${spaces(lineLength - url.length)}${methods}`
+    );
   });
 }
 
