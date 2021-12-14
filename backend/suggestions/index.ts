@@ -3,6 +3,8 @@ import { isTransaction, Journal } from 'pta-tools';
 import { readFile } from '../dal';
 import { sortByOccurrence } from '../helpers/array';
 
+import getSortedAccountsMatchingDescr from './get-sorted-accounts-matching-descr';
+
 function getPayees(trxs: Journal): string[] {
   return trxs.reduce((acc, trx) => {
     if (isTransaction(trx) && trx.description) {
@@ -39,6 +41,25 @@ export default function (fastify, opts, done) {
         }
 
         return sortByOccurrence(list).splice(0, 5);
+      },
+    },
+    {
+      method: "GET",
+      url: `/api/s/account/:query?`,
+      handler: async function (request) {
+        const data = await readFile();
+
+        const { query } = request.params;
+        const { description, sort } = request.query;
+
+        const list = getSortedAccountsMatchingDescr(
+          data.journal,
+          query,
+          description,
+          sort
+        );
+
+        return list.splice(0, 5);
       },
     },
   ];

@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import AsyncAutocomplete from 'atoms/async-autocomplete';
+
 import { Autocomplete, Button, createStyles, Group, Space, TextInput } from '@mantine/core';
 
 import { Comment, isComment, Posting } from 'pta-tools';
@@ -24,9 +26,10 @@ const EntryRow: FC<{
   amountPlaceholder: string | null;
   canDelete: boolean;
   commodities: string[];
+  description: string | undefined;
   entry: Posting | Comment;
-  suggestedCommodity: string | undefined;
   removeRow: () => void;
+  suggestedCommodity: string | undefined;
   updateRow: (field: string, value: string) => void;
 }> = ({
   accounts,
@@ -37,21 +40,26 @@ const EntryRow: FC<{
   suggestedCommodity,
   removeRow,
   updateRow,
+  description,
 }) => {
   const { classes } = useStyles();
   if (isComment(entry)) {
     return null;
   }
+
+  const params = ["sort=expenses"];
+  if (description) {
+    params.push(`description=${description}`);
+  }
+
   return (
     <Group className={classes.wrapper}>
-      <Autocomplete
+      <AsyncAutocomplete
+        endpoint="/api/s/account"
+        params={params.join("&")}
         placeholder="Account"
         value={entry.account}
         style={{ flex: 3 }}
-        data={accounts}
-        filter={(value, item) =>
-          item.value.toLowerCase().includes(value.toLowerCase().trim())
-        }
         onChange={(value) => updateRow("account", value)}
       />
       <TextInput

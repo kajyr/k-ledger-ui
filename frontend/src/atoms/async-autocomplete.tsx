@@ -1,25 +1,34 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Autocomplete, AutocompleteProps } from '@mantine/core';
 
-type Props = Omit<AutocompleteProps, "data"> & { endpoint: string };
+type Props = Omit<AutocompleteProps, "data"> & {
+  endpoint: string;
+  params?: string;
+};
 
 type Suggestions = string[];
 
-const AsyncAutocomplete: FC<Props> = ({ endpoint, ...props }) => {
-  const { isLoading, error, data } = useQuery<Suggestions>(
-    [endpoint, props.value],
+const AsyncAutocomplete: FC<Props> = ({ endpoint, params, ...props }) => {
+  const [isOpen, setOpen] = useState(false);
+  const { data } = useQuery<Suggestions>(
+    [endpoint, props.value, params],
     () => {
-      const val = props.value || "";
-      return fetch(`${endpoint}/${props.value}`).then((res) => res.json());
-
-      return Promise.resolve([]);
+      return fetch(
+        `${endpoint}/${props.value}${params ? `?${params}` : ""}`
+      ).then((res) => res.json());
     },
-    { retry: false }
+    { retry: false, enabled: isOpen }
   );
-
-  return <Autocomplete {...props} data={data || []} />;
+  return (
+    <Autocomplete
+      {...props}
+      data={data || []}
+      onFocus={() => setOpen(true)}
+      onBlur={() => setOpen(false)}
+    />
+  );
 };
 
 export default AsyncAutocomplete;

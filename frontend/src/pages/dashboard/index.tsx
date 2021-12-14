@@ -177,6 +177,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
           />
           {values.entries.map((entry, i) => (
             <EntryRow
+              description={values.description}
               accounts={journal.accounts}
               canDelete={i !== 0}
               commodities={journal.commodities}
