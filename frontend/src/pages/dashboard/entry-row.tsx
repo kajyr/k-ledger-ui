@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Autocomplete, Button, createStyles, Group, Space, TextInput } from '@mantine/core';
 
-import { Posting } from 'pta-journal';
+import { Comment, isComment, Posting } from 'pta-tools';
 
 const useStyles = createStyles((theme) => {
   return {
@@ -24,7 +24,7 @@ const EntryRow: FC<{
   amountPlaceholder: string | null;
   canDelete: boolean;
   commodities: string[];
-  entry: Posting;
+  entry: Posting | Comment;
   suggestedCommodity: string | undefined;
   removeRow: () => void;
   updateRow: (field: string, value: string) => void;
@@ -39,6 +39,9 @@ const EntryRow: FC<{
   updateRow,
 }) => {
   const { classes } = useStyles();
+  if (isComment(entry)) {
+    return null;
+  }
   return (
     <Group className={classes.wrapper}>
       <Autocomplete

@@ -1,5 +1,4 @@
-import dayjs from 'dayjs';
-import { Transaction } from 'pta-journal';
+import { isPosting, Transaction } from 'pta-tools';
 
 type FixTransaction = (trx: Transaction) => Transaction;
 
@@ -7,7 +6,9 @@ type FixTransaction = (trx: Transaction) => Transaction;
 export const clearTransaction: FixTransaction = (trx) => {
   return {
     ...trx,
-    entries: trx.entries.filter((e) => !(e.account == "" && e.amount === "")),
+    entries: trx.entries.filter(
+      (e) => isPosting(e) && !(e.account == "" && e.amount === "")
+    ),
   };
 };
 
@@ -15,10 +16,15 @@ export const clearTransaction: FixTransaction = (trx) => {
 export const fixColons: FixTransaction = (trx) => {
   return {
     ...trx,
-    entries: trx.entries.map((e) => ({
-      ...e,
-      account: e.account.replace(/:\s+/g, ":"),
-    })),
+    entries: trx.entries.map((e) => {
+      if (!isPosting(e)) {
+        return e;
+      }
+      return {
+        ...e,
+        account: e.account.replace(/:\s+/g, ":"),
+      };
+    }),
   };
 };
 

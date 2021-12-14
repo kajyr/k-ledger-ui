@@ -4,7 +4,7 @@ import fixer from 'helpers/fix-transaction';
 
 import { Button, Code, Group, Modal } from '@mantine/core';
 
-import { formatTransaction, Transaction } from 'pta-journal';
+import { formatTransaction, Transaction } from 'pta-tools';
 
 const ConfirmationModal: FC<{
   data: Transaction;

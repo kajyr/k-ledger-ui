@@ -1,4 +1,4 @@
-import { isTransaction, Journal } from 'pta-journal';
+import { isTransaction, Journal } from 'pta-tools';
 
 import { readFile } from '../dal';
 import { sortByOccurrence } from '../helpers/array';

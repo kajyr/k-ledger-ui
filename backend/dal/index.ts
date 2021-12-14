@@ -1,6 +1,6 @@
 import { createReadStream } from 'fs';
 import path from 'path';
-import { formatTransaction, parse, ParseResult, Transaction } from 'pta-journal';
+import { formatTransaction, parse, ParseResult, Transaction } from 'pta-tools';
 
 import { appendFile } from 'fs/promises';
 

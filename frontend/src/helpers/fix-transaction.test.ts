@@ -1,4 +1,4 @@
-import { Transaction } from 'pta-journal';
+import { Posting, Transaction } from 'pta-tools';
 
 import { clearTransaction, fixColons } from './fix-transaction';
 
@@ -28,6 +28,8 @@ describe("fixColons", () => {
       entries: [{ account: "Expenses: Groceries", amount: "" }],
     };
 
-    expect(fixColons(trx).entries[0].account).toBe("Expenses:Groceries");
+    expect((fixColons(trx).entries[0] as Posting).account).toBe(
+      "Expenses:Groceries"
+    );
   });
 });

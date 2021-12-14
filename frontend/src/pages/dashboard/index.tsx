@@ -10,7 +10,7 @@ import { Calendar } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
 
-import { Posting, Transaction } from 'pta-journal';
+import { Posting, Transaction } from 'pta-tools';
 import { Api } from 'types';
 
 import ConfirmationModal from './confirmation-modal';
@@ -111,7 +111,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
     });
   }
 
-  const outBalance = values.entries.reduce(
+  const outBalance = (values.entries as Posting[]).reduce(
     (acc, e) => acc + Number(e.amount),
     0
   );
@@ -122,7 +122,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
       : null;
 
   const singleCommodity = allValuesAreEqual(
-    values.entries.map((e) => e.commodity)
+    values.entries.map((e) => (e as Posting).commodity)
   );
 
   const dateStr = isToday(new Date(values.date))

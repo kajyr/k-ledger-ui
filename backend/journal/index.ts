@@ -1,4 +1,4 @@
-import { Transaction } from 'pta-journal';
+import { Transaction } from 'pta-tools';
 
 import { addTransaction } from '../dal/';
 
