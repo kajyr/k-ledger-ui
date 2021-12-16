@@ -79,11 +79,11 @@ const EntryRow: FC<{
         }
       />
       {canDelete ? (
-        <Button compact onClick={removeRow} variant="link">
+        <Button compact onClick={removeRow} variant="outline">
           Remove
         </Button>
       ) : (
-        <Space w={52} />
+        <Space w={71} />
       )}
     </Group>
   );
