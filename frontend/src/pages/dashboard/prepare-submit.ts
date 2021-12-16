@@ -31,7 +31,9 @@ function prepareSubmitData(data: FormData, options: string[]): Transaction {
   }
 
   if (payingAccount) {
-    transaction.entries.push({ account: payingAccount });
+    transaction.entries = transaction.entries.concat({
+      account: payingAccount,
+    });
   }
   return transaction;
 }
