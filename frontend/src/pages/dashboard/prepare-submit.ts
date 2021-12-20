@@ -2,20 +2,23 @@ import { Comment, isPosting, Posting, Transaction } from 'pta-tools';
 
 import { FormData, OPTION_SPLITWISE } from './';
 
+const round = (num: number) => Math.round(num * 100) / 100;
+
 function splitEntries(trx: Transaction): Transaction {
   let split: number = 0;
   const entries: (Posting | Comment)[] = trx.entries.map((entry) => {
     if (!isPosting(entry)) {
       return entry;
     }
-    const half = Number(entry.amount) / 2;
+    const amount = Number(entry.amount);
+    const half = round(amount / 2);
     split += half;
-    return { ...entry, amount: half.toString() } as Posting;
+    return { ...entry, amount: amount - half } as Posting;
   });
 
   const splitPosting: Posting = {
     account: "Assets:Splitwise",
-    amount: split.toString(),
+    amount: split,
     commodity: (trx.entries[0] as Posting).commodity,
   };
   entries.push(splitPosting);
