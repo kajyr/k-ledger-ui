@@ -10,7 +10,8 @@
   "scripts": {
     "build": "lerna run build",
     "test": "jest",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "release": "lerna version"
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
