@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/kajyr/k-ledger-ui/compare/v1.5.0...v1.6.0) (2022-01-18)
+
+
+### Bug Fixes
+
+* confirmation modal does not change the transaction in the edit fields ([98e7202](https://github.com/kajyr/k-ledger-ui/commit/98e72028a2f1165e7b1bb26a152c23747e4874ce))
+* Splitting does not create more than 2 decimals ([fb48741](https://github.com/kajyr/k-ledger-ui/commit/fb48741e62b853203e510f9b5f1cf6edf2620c78))
+
+
+### Features
+
+* Payee autocomplete ([bfec3eb](https://github.com/kajyr/k-ledger-ui/commit/bfec3ebbb9526a3be710d04cb90529e5857ff82d))
+
+
+
+
+
 # [1.5.0](https://github.com/kajyr/k-ledger-ui/compare/v1.4.0...v1.5.0) (2021-12-14)
 
 
