@@ -22,7 +22,6 @@ const useStyles = createStyles((theme) => {
 });
 
 const EntryRow: FC<{
-  accounts: string[];
   amountPlaceholder: string | null;
   canDelete: boolean;
   commodities: string[];
@@ -32,7 +31,6 @@ const EntryRow: FC<{
   suggestedCommodity: string | undefined;
   updateRow: (field: string, value: string) => void;
 }> = ({
-  accounts,
   amountPlaceholder,
   canDelete,
   commodities,

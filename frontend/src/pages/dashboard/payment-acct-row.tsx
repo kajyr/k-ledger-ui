@@ -2,7 +2,9 @@ import React, { FC } from 'react';
 
 import getAssets from 'helpers/get-assets';
 
-import { Autocomplete, createStyles, Group } from '@mantine/core';
+import AsyncAutocomplete from 'atoms/async-autocomplete';
+
+import { createStyles, Group } from '@mantine/core';
 
 const useStyles = createStyles((theme) => {
   return {
@@ -20,18 +22,25 @@ const useStyles = createStyles((theme) => {
 });
 
 const PaymentAccount: FC<{
-  accounts: string[];
-  value?: string;
+  description: string | undefined;
   onChange: (value: string) => void;
-}> = ({ accounts, value, onChange }) => {
+  value?: string;
+}> = ({ value, onChange, description }) => {
   const { classes } = useStyles();
+
+  const params = ["sort=assets"];
+  if (description) {
+    params.push(`description=${description}`);
+  }
+
   return (
     <Group className={classes.wrapper}>
-      <Autocomplete
+      <AsyncAutocomplete
         label="Paying account"
+        params={params.join("&")}
         placeholder="Account"
         value={value || ""}
-        data={accounts}
+        endpoint="/api/s/account"
         style={{ flex: 1 }}
         filter={(value, item) =>
           item.value.toLowerCase().includes(value.toLowerCase().trim())
