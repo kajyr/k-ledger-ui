@@ -6,7 +6,7 @@ const PUBLIC_PATH = path.join(__dirname, "..", "public");
 async function build(opts = {}) {
   const app = await fastify(opts);
   app.register(require("fastify-log"));
-  app.register(require("fastify-routes"));
+  app.register(require("fastify-routes-table"));
 
   await app.register(require("./config"));
   await app.register(require("./suggestions"));
