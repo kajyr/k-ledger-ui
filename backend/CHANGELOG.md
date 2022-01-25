@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/kajyr/k-ledger-ui/compare/v1.6.0...v1.6.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* Payee account now prioritize sorting also liabilities ([4340e2d](https://github.com/kajyr/k-ledger-ui/commit/4340e2d353cade3ebf2e60e92dcd1328a89e5dd4))
+
+
+
+
+
 # [1.6.0](https://github.com/kajyr/k-ledger-ui/compare/v1.5.0...v1.6.0) (2022-01-18)
 
 **Note:** Version bump only for package backend
