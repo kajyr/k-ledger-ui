@@ -1,6 +1,6 @@
 # kLedger-ui
 
-[![Build Status](https://app.travis-ci.com/kajyr/k-ledger-ui.svg?branch=main)](https://app.travis-ci.com/kajyr/k-ledger-ui)
+[![Build Status](https://github.com/kajyr/k-ledger-ui/workflows/test/badge.svg)](https://github.com/kajyr/k-ledger-ui/actions)
 
 k-ledger-ui is a mobile oriented web app that I quickly made to help me use my plain text accounting journal when travelling, with just a mobile device.
 
