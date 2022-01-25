@@ -56,7 +56,7 @@ export default function (fastify, opts, done) {
           data.journal,
           query,
           description,
-          sort
+          sort?.split(",")
         );
 
         return list.splice(0, 5);

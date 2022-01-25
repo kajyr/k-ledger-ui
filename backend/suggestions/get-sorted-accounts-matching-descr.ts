@@ -17,15 +17,26 @@ function getAccounts(trx: Transaction) {
   return accounts;
 }
 
+/**
+ * At lease on item in the list should be the
+ * starting string of the query
+ *
+ * @param str expenses:cash
+ * @param list ['exp', 'liabl']
+ */
+function startsWith(str, list) {
+  return list.some((s) => str.startsWith(s));
+}
+
 function getSortedAccountsMatchingDescr(
   journal: Journal,
   query: string | undefined,
   description: string | undefined,
-  sort: string | undefined
+  sort?: string[]
 ): string[] {
   const descr = description?.toLowerCase();
   const q = query?.toLowerCase();
-  const s = sort?.toLowerCase();
+  const s = (sort || []).map((s) => s.toLowerCase());
 
   const map = {} as Record<string, Pivot>;
 
@@ -38,7 +49,7 @@ function getSortedAccountsMatchingDescr(
 
     for (const account of getAccounts(trx)) {
       const accName = account.toLowerCase();
-      const sortMatch = !!s && accName.startsWith(s);
+      const sortMatch = startsWith(accName, s);
 
       if (!q || accName.includes(q)) {
         if (!map[account]) {

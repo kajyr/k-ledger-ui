@@ -52,7 +52,7 @@ describe("getSortedAccountsMatchingDescr", () => {
     // Breakfast is first because it matches bar
     // even if it occurres less than Bananas
     expect(
-      getSortedAccountsMatchingDescr(journal, undefined, "bar", "expenses")
+      getSortedAccountsMatchingDescr(journal, undefined, "bar", ["expenses"])
     ).toEqual([
       "Expenses:Breakfast",
       "Expenses:Lunch", // this is used less, but matches bar

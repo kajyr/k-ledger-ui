@@ -28,7 +28,7 @@ const PaymentAccount: FC<{
 }> = ({ value, onChange, description }) => {
   const { classes } = useStyles();
 
-  const params = ["sort=assets"];
+  const params = ["sort=assets,liabilities"];
   if (description) {
     params.push(`description=${description}`);
   }
@@ -42,9 +42,6 @@ const PaymentAccount: FC<{
         value={value || ""}
         endpoint="/api/s/account"
         style={{ flex: 1 }}
-        filter={(value, item) =>
-          item.value.toLowerCase().includes(value.toLowerCase().trim())
-        }
         onChange={(value) => onChange(value)}
       />
     </Group>
