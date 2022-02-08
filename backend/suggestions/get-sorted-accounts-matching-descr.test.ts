@@ -1,27 +1,27 @@
-import { Transaction } from 'pta-tools';
+import { Transaction } from "pta-tools";
 
-import getSortedAccountsMatchingDescr from './get-sorted-accounts-matching-descr';
+import getSortedAccountsMatchingDescr from "./get-sorted-accounts-matching-descr";
 
-function mockTransaction(account, description?): Transaction {
+function mockTransaction(account, description, commodity): Transaction {
   return {
     description,
     date: new Date("2020-01-01"),
-    entries: [{ account, amount: 3 }, { account: "Assets:Cash" }],
+    entries: [{ account, amount: 3, commodity }, { account: "Assets:Cash" }],
   };
 }
 
 describe("getSortedAccountsMatchingDescr", () => {
   const journal = [
-    mockTransaction("Expenses:Bananas", "Supermarket"),
-    mockTransaction("Expenses:Breakfast", "Bar"),
-    mockTransaction("Expenses:Bananas", "Supermarket"),
-    mockTransaction("Expenses:Bananas", "Supermarket"),
-    mockTransaction("Expenses:Bananas", "Supermarket"),
-    mockTransaction("Expenses:Breakfast", "cafeteria"),
-    mockTransaction("Expenses:Lunch", "bar"),
-    mockTransaction("Assets:Bank"),
-    mockTransaction("Expenses:Groceries", "Supermarket"),
-    mockTransaction("Expenses:Groceries", "Supermarket"),
+    mockTransaction("Expenses:Bananas", "Supermarket", "EUR"),
+    mockTransaction("Expenses:Breakfast", "Bar", "EUR"),
+    mockTransaction("Expenses:Bananas", "Supermarket", "EUR"),
+    mockTransaction("Expenses:Bananas", "Supermarket", "USD"),
+    mockTransaction("Expenses:Bananas", "Supermarket", "USD"),
+    mockTransaction("Expenses:Breakfast", "cafeteria", "EUR"),
+    mockTransaction("Expenses:Lunch", "bar", "USD"),
+    mockTransaction("Assets:Bank", undefined, "EUR"),
+    mockTransaction("Expenses:Groceries", "Supermarket", "EUR"),
+    mockTransaction("Expenses:Groceries", "Supermarket", "ETH"),
   ];
 
   test("Returns sorted account list", () => {
@@ -29,7 +29,7 @@ describe("getSortedAccountsMatchingDescr", () => {
     // even if it occurres less than Bananas
     // Bananas goes before Bank because it is used more often
     expect(
-      getSortedAccountsMatchingDescr(journal, "b", "bar", undefined)
+      getSortedAccountsMatchingDescr(journal, "b", "bar", "account")
     ).toEqual(["Expenses:Breakfast", "Expenses:Bananas", "Assets:Bank"]);
   });
 
@@ -37,7 +37,7 @@ describe("getSortedAccountsMatchingDescr", () => {
     // Breakfast is first because it matches bar
     // even if it occurres less than Bananas
     expect(
-      getSortedAccountsMatchingDescr(journal, undefined, "bar", undefined)
+      getSortedAccountsMatchingDescr(journal, undefined, "bar", "account")
     ).toEqual([
       "Assets:Cash", // This is used in every mock, so first
       "Expenses:Breakfast",
@@ -52,7 +52,9 @@ describe("getSortedAccountsMatchingDescr", () => {
     // Breakfast is first because it matches bar
     // even if it occurres less than Bananas
     expect(
-      getSortedAccountsMatchingDescr(journal, undefined, "bar", ["expenses"])
+      getSortedAccountsMatchingDescr(journal, undefined, "bar", "account", [
+        "expenses",
+      ])
     ).toEqual([
       "Expenses:Breakfast",
       "Expenses:Lunch", // this is used less, but matches bar
@@ -61,5 +63,14 @@ describe("getSortedAccountsMatchingDescr", () => {
       "Assets:Cash", // This is used in every mock, but does not match sorting
       "Assets:Bank",
     ]);
+  });
+
+  test("Extracts commodities", () => {
+    // Breakfast is first because it matches bar
+    // even if it occurres less than Bananas
+    // Bananas goes before Bank because it is used more often
+    expect(
+      getSortedAccountsMatchingDescr(journal, "e", "bar", "commodity")
+    ).toEqual(["EUR", "ETH"]);
   });
 });

@@ -1,10 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import AsyncAutocomplete from 'atoms/async-autocomplete';
+import AsyncAutocomplete from "atoms/async-autocomplete";
 
-import { Autocomplete, Button, createStyles, Group, Space, TextInput } from '@mantine/core';
+import {
+  Autocomplete,
+  Button,
+  createStyles,
+  Group,
+  Space,
+  TextInput,
+} from "@mantine/core";
 
-import { Comment, isComment, Posting } from 'pta-tools';
+import { Comment, isComment, Posting } from "pta-tools";
 
 const useStyles = createStyles((theme) => {
   return {
@@ -24,18 +31,14 @@ const useStyles = createStyles((theme) => {
 const EntryRow: FC<{
   amountPlaceholder: string | null;
   canDelete: boolean;
-  commodities: string[];
   description: string | undefined;
   entry: Posting | Comment;
   removeRow: () => void;
-  suggestedCommodity: string | undefined;
   updateRow: (field: string, value: string) => void;
 }> = ({
   amountPlaceholder,
   canDelete,
-  commodities,
   entry,
-  suggestedCommodity,
   removeRow,
   updateRow,
   description,
@@ -66,15 +69,13 @@ const EntryRow: FC<{
         style={{ flex: 2 }}
         onChange={(event) => updateRow("amount", event.currentTarget.value)}
       />
-      <Autocomplete
-        placeholder={suggestedCommodity || "Commodity"}
-        value={entry.commodity}
+      <AsyncAutocomplete
+        endpoint="/api/s/commodity"
+        params={params.join("&")}
+        placeholder="Commodity"
+        value={entry.commodity || ""}
         style={{ flex: 1 }}
         onChange={(value) => updateRow("commodity", value)}
-        data={commodities}
-        filter={(value, item) =>
-          item.value.toLowerCase().includes(value.toLowerCase().trim())
-        }
       />
       {canDelete ? (
         <Button compact onClick={removeRow} variant="outline">

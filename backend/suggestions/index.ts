@@ -1,11 +1,20 @@
-import { isTransaction, Journal } from 'pta-tools';
+import { isTransaction, Journal } from "pta-tools";
 
-import { readFile } from '../dal';
-import { sortByOccurrence } from '../helpers/array';
+import { readFile } from "../dal";
+import { sortByOccurrence } from "../helpers/array";
 
-import getSortedAccountsMatchingDescr from './get-sorted-accounts-matching-descr';
+import getSortedAccountsMatchingDescr from "./get-sorted-accounts-matching-descr";
 
 function getPayees(trxs: Journal): string[] {
+  return trxs.reduce((acc, trx) => {
+    if (isTransaction(trx) && trx.description) {
+      acc.push(trx.description);
+    }
+    return acc;
+  }, [] as string[]);
+}
+
+function getCommodities(trxs: Journal): string[] {
   return trxs.reduce((acc, trx) => {
     if (isTransaction(trx) && trx.description) {
       acc.push(trx.description);
@@ -45,17 +54,18 @@ export default function (fastify, opts, done) {
     },
     {
       method: "GET",
-      url: `/api/s/account/:query?`,
+      url: `/api/s/:entity/:query?`,
       handler: async function (request) {
         const data = await readFile();
 
-        const { query } = request.params;
+        const { query, entity } = request.params;
         const { description, sort } = request.query;
 
         const list = getSortedAccountsMatchingDescr(
           data.journal,
           query,
           description,
+          entity,
           sort?.split(",")
         );
 

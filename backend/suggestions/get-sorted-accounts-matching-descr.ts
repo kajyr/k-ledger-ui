@@ -1,4 +1,4 @@
-import { isPosting, isTransaction, Journal, Transaction } from 'pta-tools';
+import { isPosting, isTransaction, Journal, Transaction } from "pta-tools";
 
 type Pivot = {
   account: string;
@@ -7,11 +7,11 @@ type Pivot = {
   uses: number;
 };
 
-function getAccounts(trx: Transaction) {
+function getKeysFromPostings(trx: Transaction, filterKey: string): string[] {
   const accounts: string[] = [];
   for (const entry of trx.entries) {
-    if (isPosting(entry)) {
-      accounts.push(entry.account);
+    if (isPosting(entry) && entry[filterKey]) {
+      accounts.push(entry[filterKey]);
     }
   }
   return accounts;
@@ -32,6 +32,7 @@ function getSortedAccountsMatchingDescr(
   journal: Journal,
   query: string | undefined,
   description: string | undefined,
+  filterKey: string,
   sort?: string[]
 ): string[] {
   const descr = description?.toLowerCase();
@@ -47,17 +48,17 @@ function getSortedAccountsMatchingDescr(
     const descrMatch =
       descr && trx.description?.toLowerCase().startsWith(descr) ? 1 : 0;
 
-    for (const account of getAccounts(trx)) {
-      const accName = account.toLowerCase();
-      const sortMatch = startsWith(accName, s);
+    for (const key of getKeysFromPostings(trx, filterKey)) {
+      const keyLower = key.toLowerCase();
+      const sortMatch = startsWith(keyLower, s);
 
-      if (!q || accName.includes(q)) {
-        if (!map[account]) {
-          map[account] = { account, descrMatch, sortMatch, uses: 1 };
+      if (!q || keyLower.includes(q)) {
+        if (!map[key]) {
+          map[key] = { account: key, descrMatch, sortMatch, uses: 1 };
         } else {
-          map[account].descrMatch += descrMatch;
-          map[account].sortMatch = map[account].sortMatch || sortMatch;
-          map[account].uses++;
+          map[key].descrMatch += descrMatch;
+          map[key].sortMatch = map[key].sortMatch || sortMatch;
+          map[key].uses++;
         }
       }
     }

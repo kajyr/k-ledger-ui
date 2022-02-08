@@ -1,22 +1,32 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState } from "react";
 
-import { callApi } from 'helpers/api';
-import { isToday } from 'helpers/dates';
+import { callApi } from "helpers/api";
+import { isToday } from "helpers/dates";
 
-import AsyncAutocomplete from 'atoms/async-autocomplete';
+import AsyncAutocomplete from "atoms/async-autocomplete";
 
-import { Button, Chip, Chips, Group, LoadingOverlay, Paper, Popover, Text, Title } from '@mantine/core';
-import { Calendar } from '@mantine/dates';
-import { useForm } from '@mantine/hooks';
-import { useNotifications } from '@mantine/notifications';
+import {
+  Button,
+  Chip,
+  Chips,
+  Group,
+  LoadingOverlay,
+  Paper,
+  Popover,
+  Text,
+  Title,
+} from "@mantine/core";
+import { Calendar } from "@mantine/dates";
+import { useForm } from "@mantine/hooks";
+import { useNotifications } from "@mantine/notifications";
 
-import { Posting, Transaction } from 'pta-tools';
-import { Api } from 'types';
+import { Posting, Transaction } from "pta-tools";
+import { Api } from "types";
 
-import ConfirmationModal from './confirmation-modal';
-import EntryRow from './entry-row';
-import PaymentAccount from './payment-acct-row';
-import prepareSubmitData from './prepare-submit';
+import ConfirmationModal from "./confirmation-modal";
+import EntryRow from "./entry-row";
+import PaymentAccount from "./payment-acct-row";
+import prepareSubmitData from "./prepare-submit";
 
 const EMPTY_ENTRY: Posting = {
   account: "",
@@ -121,10 +131,6 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
       ? (outBalance * -1).toString()
       : null;
 
-  const singleCommodity = allValuesAreEqual(
-    values.entries.map((e) => (e as Posting).commodity)
-  );
-
   const dateStr = isToday(new Date(values.date))
     ? "Today"
     : values.date.toLocaleDateString();
@@ -179,13 +185,11 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
             <EntryRow
               description={values.description}
               canDelete={i !== 0}
-              commodities={journal.commodities}
               entry={entry}
               key={i}
               removeRow={removeRow(i)}
               updateRow={updateRow(i)}
               amountPlaceholder={amountPlaceholder}
-              suggestedCommodity={singleCommodity}
             />
           ))}
           <PaymentAccount
