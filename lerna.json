@@ -1,7 +1,4 @@
 {
-  "changelogPreset": {
-    "name": "conventionalcommits"
-  },
   "command": {
     "publish": {
       "allowBranch": "main",
