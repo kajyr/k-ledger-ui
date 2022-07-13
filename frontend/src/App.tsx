@@ -8,9 +8,12 @@ import Loader from 'atoms/Loader';
 import Page from 'templates/Page';
 
 import Dashboard from 'pages/dashboard';
+import Review from 'pages/review';
+
+import { Paper, Tabs } from '@mantine/core';
 
 const App: FC = () => {
-  const { isLoading, error, data } = useQuery<Api.BootstrapResponse>('bootstrap', () =>
+  const { isLoading, data } = useQuery<Api.BootstrapResponse>('bootstrap', () =>
     fetch('/api/bootstrap').then(res => res.json())
   );
 
@@ -21,7 +24,16 @@ const App: FC = () => {
   return (
     <>
       <Page filename={data.file}>
-        <Dashboard journal={data} />
+        <Paper p="md" shadow="sm" component="section">
+          <Tabs>
+            <Tabs.Tab label="Add">
+              <Dashboard journal={data} />
+            </Tabs.Tab>
+            <Tabs.Tab label="Review">
+              <Review journal={data} />
+            </Tabs.Tab>
+          </Tabs>
+        </Paper>
       </Page>
     </>
   );

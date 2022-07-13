@@ -7,7 +7,7 @@ import React, { FC, useState } from 'react';
 
 import AsyncAutocomplete from 'atoms/async-autocomplete';
 
-import { Button, Chip, Chips, Group, LoadingOverlay, Paper, Popover, Text, Title } from '@mantine/core';
+import { Button, Chip, Chips, Group, LoadingOverlay, Popover, Text } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
@@ -23,8 +23,6 @@ const EMPTY_ENTRY: Posting = {
 };
 
 export const OPTION_SPLITWISE = 'splitwise';
-
-
 
 export type FormData = Transaction & {
   payingAccount?: string;
@@ -109,74 +107,71 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = () => {
 
   const amountPlaceholder = !isNaN(outBalance) && outBalance !== 0 ? (outBalance * -1).toString() : null;
 
-  const dateStr = isToday(new Date(values.date)) ? 'Today' : values.date.toLocaleDateString();
+  const date = new Date(values.date);
+  const dateStr = isToday(date) ? 'Today' : date.toLocaleDateString();
 
   return (
-    <div>
-      <Paper p="md" shadow="sm" component="section">
-        <form onSubmit={onSubmit(handleSubmit)} style={{ position: 'relative' }}>
-          <LoadingOverlay visible={showOverlay} />
-          <Title order={2}>Add</Title>
-
-          <Popover
-            opened={dateOpen}
-            onClose={() => setDateOpen(false)}
-            target={
-              <Text size="sm" style={{ marginTop: '15px' }}>
-                Date:{' '}
-                <Button onClick={() => setDateOpen(o => !o)} size="xs" compact variant="outline">
-                  {dateStr}
-                </Button>
-              </Text>
-            }
-            styles={{ body: { width: 260 } }}
-            withArrow>
-            <div style={{ display: 'flex' }}>
-              <Calendar
-                value={values.date}
-                onChange={date => {
-                  date && setFieldValue('date', date);
-                  setDateOpen(false);
-                }}
-              />
-            </div>
-          </Popover>
-          <AsyncAutocomplete
-            label="Payee / Description"
-            value={values.description}
-            style={{ marginTop: '15px' }}
-            onChange={value => setFieldValue('description', value)}
-            endpoint="/api/s/description"
-          />
-          {values.entries.map((entry, i) => (
-            <EntryRow
-              description={values.description}
-              canDelete={i !== 0}
-              entry={entry}
-              key={i}
-              removeRow={removeRow(i)}
-              updateRow={updateRow(i)}
-              amountPlaceholder={amountPlaceholder}
+    <>
+      <form onSubmit={onSubmit(handleSubmit)} style={{ position: 'relative' }}>
+        <LoadingOverlay visible={showOverlay} />
+        <Popover
+          opened={dateOpen}
+          onClose={() => setDateOpen(false)}
+          target={
+            <Text size="sm" style={{ marginTop: '15px' }}>
+              Date:{' '}
+              <Button onClick={() => setDateOpen(o => !o)} size="xs" compact variant="outline">
+                {dateStr}
+              </Button>
+            </Text>
+          }
+          styles={{ body: { width: 260 } }}
+          withArrow>
+          <div style={{ display: 'flex' }}>
+            <Calendar
+              value={date}
+              onChange={date => {
+                date && setFieldValue('date', date);
+                setDateOpen(false);
+              }}
             />
-          ))}
-          <PaymentAccount
+          </div>
+        </Popover>
+        <AsyncAutocomplete
+          label="Payee / Description"
+          value={values.description}
+          style={{ marginTop: '15px' }}
+          onChange={value => setFieldValue('description', value)}
+          endpoint="/api/s/description"
+        />
+        {values.entries.map((entry, i) => (
+          <EntryRow
             description={values.description}
-            value={values.payingAccount}
-            onChange={value => setFieldValue('payingAccount', value)}
+            canDelete={i !== 0}
+            entry={entry}
+            key={i}
+            removeRow={removeRow(i)}
+            updateRow={updateRow(i)}
+            amountPlaceholder={amountPlaceholder}
           />
-          <Chips style={{ marginTop: '25px' }} size="xs" radius="sm" multiple value={options} onChange={setOptions}>
-            <Chip value={OPTION_SPLITWISE}>Split with Splitwise</Chip>
-          </Chips>
-          <Group position="right" style={{ marginTop: '25px' }}>
-            <Button variant="outline" onClick={addRow}>
-              Add row
-            </Button>
-            <Button color="blue" type="submit">
-              Save
-            </Button>
-          </Group>
-        </form>
-      </Paper>
+        ))}
+        <PaymentAccount
+          description={values.description}
+          value={values.payingAccount}
+          onChange={value => setFieldValue('payingAccount', value)}
+        />
+        <Chips style={{ marginTop: '25px' }} size="xs" radius="sm" multiple value={options} onChange={setOptions}>
+          <Chip value={OPTION_SPLITWISE}>Split with Splitwise</Chip>
+        </Chips>
+        <Group position="right" style={{ marginTop: '25px' }}>
+          <Button variant="outline" onClick={addRow}>
+            Add row
+          </Button>
+          <Button color="blue" type="submit">
+            Save
+          </Button>
+        </Group>
+      </form>
       {modalOpen && (
         <ConfirmationModal
           data={prepareSubmitData(values, options)}
@@ -184,7 +179,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = () => {
           onConfirm={handleModalConfirm}
         />
       )}
-    </div>
+    </>
   );
 };
 
