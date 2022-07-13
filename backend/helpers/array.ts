@@ -24,7 +24,7 @@ export function sortByOccurrence(list: string[]): string[] {
 
   for (let i = 0; i < list.length; i++) {
     count++;
-    if (list[i] != list[i + 1]) {
+    if (list[i] !== list[i + 1]) {
       result.push({
         count: count,
         value: list[i]

@@ -13,14 +13,7 @@ function getPayees(trxs: Journal): string[] {
   }, [] as string[]);
 }
 
-function getCommodities(trxs: Journal): string[] {
-  return trxs.reduce((acc, trx) => {
-    if (isTransaction(trx) && trx.description) {
-      acc.push(trx.description);
-    }
-    return acc;
-  }, [] as string[]);
-}
+
 
 export default function (fastify, opts, done) {
   const routes = [

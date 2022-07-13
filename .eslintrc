@@ -18,38 +18,7 @@
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/no-namespace": 0,
         "@typescript-eslint/no-var-requires": 0,
-        "eqeqeq": "error",
-        "max-nested-callbacks": [
-            "error",
-            {
-                "max": 4
-            }
-        ],
-        "no-case-declarations": "warn",
-        "no-console": [
-            "error",
-            {
-                "allow": ["log", "warn"]
-            }
-        ],
-        "no-constant-condition": "error",
-        "no-debugger": "warn",
-        "no-dupe-args": "error",
-        "no-dupe-keys": "error",
-        "no-else-return": "error",
-        "no-empty": "error",
-        "no-irregular-whitespace": "error",
-        "no-script-url": "warn",
-        "no-undef": "error",
-        "no-unreachable": "error",
-        "prettier/prettier": "warn",
-        "react-hooks/rules-of-hooks": "error",
-        "react/prop-types": [
-            "error",
-            {
-                "ignore": ["children", "dispatch", "context"]
-            }
-        ]
+        "eqeqeq":  ["error", "smart"]
     },
     "extends": [
         "plugin:react/recommended",
