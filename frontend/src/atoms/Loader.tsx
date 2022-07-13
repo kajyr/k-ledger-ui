@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 
-import { createStyles, Loader as MLoader } from '@mantine/core';
+import { Loader as MLoader, createStyles } from '@mantine/core';
 
 const useStyles = createStyles(() => {
   return {
-    wrapper: { textAlign: "center", margin: "1em 0" },
+    wrapper: { margin: '1em 0', textAlign: 'center' }
   };
 });
 

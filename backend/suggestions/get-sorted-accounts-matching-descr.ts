@@ -1,4 +1,4 @@
-import { isPosting, isTransaction, Journal, Transaction } from "pta-tools";
+import { Journal, Transaction, isPosting, isTransaction } from 'pta-tools';
 
 type Pivot = {
   account: string;
@@ -25,7 +25,7 @@ function getKeysFromPostings(trx: Transaction, filterKey: string): string[] {
  * @param list ['exp', 'liabl']
  */
 function startsWith(str, list) {
-  return list.some((s) => str.startsWith(s));
+  return list.some(s => str.startsWith(s));
 }
 
 function getSortedAccountsMatchingDescr(
@@ -37,7 +37,7 @@ function getSortedAccountsMatchingDescr(
 ): string[] {
   const descr = description?.toLowerCase();
   const q = query?.toLowerCase();
-  const s = (sort || []).map((s) => s.toLowerCase());
+  const s = (sort || []).map(s => s.toLowerCase());
 
   const map = {} as Record<string, Pivot>;
 
@@ -45,8 +45,7 @@ function getSortedAccountsMatchingDescr(
     if (!isTransaction(trx)) {
       continue;
     }
-    const descrMatch =
-      descr && trx.description?.toLowerCase().startsWith(descr) ? 1 : 0;
+    const descrMatch = descr && trx.description?.toLowerCase().startsWith(descr) ? 1 : 0;
 
     for (const key of getKeysFromPostings(trx, filterKey)) {
       const keyLower = key.toLowerCase();
@@ -76,7 +75,7 @@ function getSortedAccountsMatchingDescr(
       a.account.localeCompare(b.account)
   );
 
-  return sorted.map((v) => v.account);
+  return sorted.map(v => v.account);
 }
 
 export default getSortedAccountsMatchingDescr;

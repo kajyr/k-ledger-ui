@@ -1,0 +1,73 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "settings": {
+        "react": {
+            "version": "17"
+        }
+    },
+    "rules": {
+        "sort-keys-fix/sort-keys-fix": "warn",
+        "@typescript-eslint/ban-ts-comment": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-namespace": 0,
+        "@typescript-eslint/no-var-requires": 0,
+        "eqeqeq": "error",
+        "max-nested-callbacks": [
+            "error",
+            {
+                "max": 4
+            }
+        ],
+        "no-case-declarations": "warn",
+        "no-console": [
+            "error",
+            {
+                "allow": ["log", "warn"]
+            }
+        ],
+        "no-constant-condition": "error",
+        "no-debugger": "warn",
+        "no-dupe-args": "error",
+        "no-dupe-keys": "error",
+        "no-else-return": "error",
+        "no-empty": "error",
+        "no-irregular-whitespace": "error",
+        "no-script-url": "warn",
+        "no-undef": "error",
+        "no-unreachable": "error",
+        "prettier/prettier": "warn",
+        "react-hooks/rules-of-hooks": "error",
+        "react/prop-types": [
+            "error",
+            {
+                "ignore": ["children", "dispatch", "context"]
+            }
+        ]
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "prettier",
+        "plugin:jest/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "env": {
+        "amd": true,
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "jest": true
+    },
+    "globals": {
+        "React": true,
+        "__VERSION__": true
+    },
+    "plugins": ["@typescript-eslint", "jest", "prettier", "react-hooks", "react", "sort-keys-fix"]
+}

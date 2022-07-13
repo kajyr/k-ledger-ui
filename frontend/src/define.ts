@@ -1,1 +1,1 @@
-declare var __VERSION__: string;
+declare let __VERSION__: string;

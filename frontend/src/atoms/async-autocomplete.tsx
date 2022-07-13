@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 import { Autocomplete, AutocompleteProps } from '@mantine/core';
 
-type Props = Omit<AutocompleteProps, "data"> & {
+type Props = Omit<AutocompleteProps, 'data'> & {
   endpoint: string;
   params?: string;
 };
@@ -15,20 +15,11 @@ const AsyncAutocomplete: FC<Props> = ({ endpoint, params, ...props }) => {
   const { data } = useQuery<Suggestions>(
     [endpoint, props.value, params],
     () => {
-      return fetch(
-        `${endpoint}/${props.value}${params ? `?${params}` : ""}`
-      ).then((res) => res.json());
+      return fetch(`${endpoint}/${props.value}${params ? `?${params}` : ''}`).then(res => res.json());
     },
-    { retry: false, enabled: isOpen }
+    { enabled: isOpen, retry: false }
   );
-  return (
-    <Autocomplete
-      {...props}
-      data={data || []}
-      onFocus={() => setOpen(true)}
-      onBlur={() => setOpen(false)}
-    />
-  );
+  return <Autocomplete {...props} data={data || []} onFocus={() => setOpen(true)} onBlur={() => setOpen(false)} />;
 };
 
 export default AsyncAutocomplete;

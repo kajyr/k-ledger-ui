@@ -5,25 +5,25 @@ import { addTransaction } from '../dal/';
 export default function (fastify, opts, done) {
   const routes = [
     {
-      method: "GET",
-      url: `/api/journal`,
       handler: async function () {
         return { test: 5 };
       },
+      method: 'GET',
+      url: `/api/journal`
     },
     {
-      method: "POST",
-      path: `/api/journal`,
       handler: async function (request, reply) {
         const trx = request.body as Transaction;
         if (!trx.date) {
-          return reply.status(405).send({ error: "Missing date" });
+          return reply.status(405).send({ error: 'Missing date' });
         }
 
         await addTransaction(trx);
         return reply.status(200).send();
       },
-    },
+      method: 'POST',
+      path: `/api/journal`
+    }
   ];
 
   for (const route of routes) {

@@ -1,10 +1,9 @@
+import fixer from 'helpers/fix-transaction';
+import { Transaction, formatTransaction } from 'pta-tools';
+
 import React, { FC } from 'react';
 
-import fixer from 'helpers/fix-transaction';
-
 import { Button, Code, Group, Modal } from '@mantine/core';
-
-import { formatTransaction, Transaction } from 'pta-tools';
 
 const ConfirmationModal: FC<{
   data: Transaction;

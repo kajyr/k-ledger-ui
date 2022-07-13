@@ -42,10 +42,9 @@ const Page: FC<{ filename: string }> = ({ filename, children }) => (
           leftIcon={<GitHubLogoIcon />}
           styles={{
             leftIcon: {
-              marginRight: 15,
-            },
-          }}
-        >
+              marginRight: 15
+            }
+          }}>
           Source Code
         </Button>
       </Group>

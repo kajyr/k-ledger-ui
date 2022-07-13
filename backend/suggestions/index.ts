@@ -1,9 +1,8 @@
-import { isTransaction, Journal } from "pta-tools";
+import { Journal, isTransaction } from 'pta-tools';
 
-import { readFile } from "../dal";
-import { sortByOccurrence } from "../helpers/array";
-
-import getSortedAccountsMatchingDescr from "./get-sorted-accounts-matching-descr";
+import { readFile } from '../dal';
+import { sortByOccurrence } from '../helpers/array';
+import getSortedAccountsMatchingDescr from './get-sorted-accounts-matching-descr';
 
 function getPayees(trxs: Journal): string[] {
   return trxs.reduce((acc, trx) => {
@@ -26,8 +25,6 @@ function getCommodities(trxs: Journal): string[] {
 export default function (fastify, opts, done) {
   const routes = [
     {
-      method: "GET",
-      url: `/api/s/description/:query?`,
       handler: async function (request) {
         const data = await readFile();
 
@@ -39,10 +36,7 @@ export default function (fastify, opts, done) {
           list = getPayees(data.journal);
         } else {
           list = data.journal.reduce((acc, trx) => {
-            if (
-              isTransaction(trx) &&
-              trx.description?.toLowerCase().includes(query.toLowerCase())
-            ) {
+            if (isTransaction(trx) && trx.description?.toLowerCase().includes(query.toLowerCase())) {
               acc.push(trx.description);
             }
             return acc;
@@ -51,27 +45,23 @@ export default function (fastify, opts, done) {
 
         return sortByOccurrence(list).splice(0, 5);
       },
+      method: 'GET',
+      url: `/api/s/description/:query?`
     },
     {
-      method: "GET",
-      url: `/api/s/:entity/:query?`,
       handler: async function (request) {
         const data = await readFile();
 
         const { query, entity } = request.params;
         const { description, sort } = request.query;
 
-        const list = getSortedAccountsMatchingDescr(
-          data.journal,
-          query,
-          description,
-          entity,
-          sort?.split(",")
-        );
+        const list = getSortedAccountsMatchingDescr(data.journal, query, description, entity, sort?.split(','));
 
         return list.splice(0, 5);
       },
-    },
+      method: 'GET',
+      url: `/api/s/:entity/:query?`
+    }
   ];
 
   for (const route of routes) {

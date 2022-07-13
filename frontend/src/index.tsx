@@ -12,9 +12,9 @@ import FourOhFour from './pages/four-oh-four';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
+      refetchOnWindowFocus: false
+    }
+  }
 });
 
 render(
@@ -31,5 +31,5 @@ render(
       </QueryClientProvider>
     </NotificationsProvider>
   </>,
-  document.getElementById("rroot")
+  document.getElementById('rroot')
 );

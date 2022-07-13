@@ -1,0 +1,26 @@
+{
+	"singleQuote": true,
+	"bracketSameLine": true,
+	"printWidth": 120,
+	"trailingComma": "none",
+	"arrowParens": "avoid",
+	"importOrder": [
+		"^$",
+		"^(prop|styled|react)",
+		"^(@radar|mout)",
+		"^typings/",
+		"^(helper|hooks|actions|stores)/",
+		"^hoc/",
+		"^atoms/",
+		"^molecules/",
+		"^organisms/",
+		"^templates/",
+		"^pages/",
+		"^[@]",
+		"^[.../]",
+		"^./$",
+		"^[./]"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
+}

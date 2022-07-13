@@ -1,23 +1,23 @@
-import React, { FC } from 'react';
-
 import getAssets from 'helpers/get-assets';
+
+import React, { FC } from 'react';
 
 import AsyncAutocomplete from 'atoms/async-autocomplete';
 
-import { createStyles, Group } from '@mantine/core';
+import { Group, createStyles } from '@mantine/core';
 
-const useStyles = createStyles((theme) => {
+const useStyles = createStyles(theme => {
   return {
     wrapper: {
-      marginTop: "25px",
-      flexDirection: "column",
-      alignItems: "inherit",
+      alignItems: 'inherit',
+      flexDirection: 'column',
+      marginTop: '25px',
       [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
+        alignItems: 'center',
         // Type safe child reference in nested selectors via ref
-        flexDirection: "row",
-        alignItems: "center",
-      },
-    },
+        flexDirection: 'row'
+      }
+    }
   };
 });
 
@@ -28,7 +28,7 @@ const PaymentAccount: FC<{
 }> = ({ value, onChange, description }) => {
   const { classes } = useStyles();
 
-  const params = ["sort=assets,liabilities"];
+  const params = ['sort=assets,liabilities'];
   if (description) {
     params.push(`description=${description}`);
   }
@@ -37,12 +37,12 @@ const PaymentAccount: FC<{
     <Group className={classes.wrapper}>
       <AsyncAutocomplete
         label="Paying account"
-        params={params.join("&")}
+        params={params.join('&')}
         placeholder="Account"
-        value={value || ""}
+        value={value || ''}
         endpoint="/api/s/account"
         style={{ flex: 1 }}
-        onChange={(value) => onChange(value)}
+        onChange={value => onChange(value)}
       />
     </Group>
   );

@@ -1,6 +1,6 @@
 export namespace Server {
   export type Route = {
-    method: "GET";
+    method: 'GET';
     schema: any;
     url: string;
     logLevel: string;

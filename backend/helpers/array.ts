@@ -27,7 +27,7 @@ export function sortByOccurrence(list: string[]): string[] {
     if (list[i] != list[i + 1]) {
       result.push({
         count: count,
-        value: list[i],
+        value: list[i]
       });
       count = 0;
     }
@@ -35,5 +35,5 @@ export function sortByOccurrence(list: string[]): string[] {
 
   result.sort((a, b) => b.count - a.count);
 
-  return result.map((item) => item.value);
+  return result.map(item => item.value);
 }

@@ -1,3 +1,5 @@
+import { Api } from 'types';
+
 import React, { FC } from 'react';
 import { useQuery } from 'react-query';
 
@@ -7,12 +9,9 @@ import Page from 'templates/Page';
 
 import Dashboard from 'pages/dashboard';
 
-import { Api } from 'types';
-
 const App: FC = () => {
-  const { isLoading, error, data } = useQuery<Api.BootstrapResponse>(
-    "bootstrap",
-    () => fetch("/api/bootstrap").then((res) => res.json())
+  const { isLoading, error, data } = useQuery<Api.BootstrapResponse>('bootstrap', () =>
+    fetch('/api/bootstrap').then(res => res.json())
   );
 
   if (isLoading || !data) {
