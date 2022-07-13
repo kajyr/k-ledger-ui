@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/kajyr/k-ledger-ui/compare/v1.6.1...v1.7.0) (2022-07-13)
+
+
+### Features
+
+* commodity autocomplete ([35d2720](https://github.com/kajyr/k-ledger-ui/commit/35d272031997668423e82344706e0fe881656258))
+* Review of daily entries. ([d952f25](https://github.com/kajyr/k-ledger-ui/commit/d952f25e8d6b5023e94549087089ab4948ccc0a7)), closes [#2](https://github.com/kajyr/k-ledger-ui/issues/2)
+
+
+
+
+
 ## [1.6.1](https://github.com/kajyr/k-ledger-ui/compare/v1.6.0...v1.6.1) (2022-01-25)
 
 
