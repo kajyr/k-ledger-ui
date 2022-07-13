@@ -24,17 +24,13 @@ const EMPTY_ENTRY: Posting = {
 
 export const OPTION_SPLITWISE = 'splitwise';
 
-function allValuesAreEqual<T>(values: T[]): T | undefined {
-  if (values.every(value => value == null || value === values[0])) {
-    return values[0];
-  }
-}
+
 
 export type FormData = Transaction & {
   payingAccount?: string;
 };
 
-const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
+const Dashboard: FC<{ journal: Api.BootstrapResponse }> = () => {
   const notifications = useNotifications();
   const [options, setOptions] = useState<string[]>([]);
 
@@ -117,7 +113,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
 
   return (
     <div>
-      <Paper padding="md" shadow="sm" component="section">
+      <Paper p="md" shadow="sm" component="section">
         <form onSubmit={onSubmit(handleSubmit)} style={{ position: 'relative' }}>
           <LoadingOverlay visible={showOverlay} />
           <Title order={2}>Add</Title>

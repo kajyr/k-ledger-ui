@@ -1,24 +1,29 @@
+require('dotenv').config();
+
 import app from './app';
 import { fullFile } from './dal';
 import pkg from './package.json';
+import pino from 'pino';
 
-require('dotenv').config();
 
 const PORT = 4445;
 
 const nodeEnv = (process.env.NODE_ENV || 'development').toLowerCase();
 const isDev = nodeEnv === 'development';
 
+const logger = pino({
+  transport: {
+    options: {
+      colorize: true
+    },
+    target: 'pino-pretty'
+  }
+})
+
 const init = async () => {
   const server = await app({
     logger: isDev
-      ? {
-          prettyPrint: {
-            colorize: true,
-            ignore: 'pid,hostname,reqId',
-            translateTime: 'HH:MM:ss'
-          }
-        }
+      ? logger
       : false
   });
 
