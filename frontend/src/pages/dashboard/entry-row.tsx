@@ -1,10 +1,10 @@
-import { Comment, Posting, isComment } from 'pta-tools';
-
 import React, { FC } from 'react';
+
+import { Comment, Posting, isComment } from 'pta-tools';
 
 import AsyncAutocomplete from 'atoms/async-autocomplete';
 
-import { Autocomplete, Button, Group, Space, TextInput, createStyles } from '@mantine/core';
+import { Button, Chip, Chips, Group, Space, TextInput, createStyles } from '@mantine/core';
 
 const useStyles = createStyles(theme => {
   return {
@@ -24,11 +24,12 @@ const useStyles = createStyles(theme => {
 const EntryRow: FC<{
   amountPlaceholder: string | null;
   canDelete: boolean;
+  commodities: string[];
   description: string | undefined;
   entry: Posting | Comment;
   removeRow: () => void;
   updateRow: (field: string, value: string) => void;
-}> = ({ amountPlaceholder, canDelete, entry, removeRow, updateRow, description }) => {
+}> = ({ amountPlaceholder, canDelete, entry, removeRow, updateRow, description, commodities }) => {
   const { classes } = useStyles();
   if (isComment(entry)) {
     return null;
@@ -55,14 +56,21 @@ const EntryRow: FC<{
         style={{ flex: 2 }}
         onChange={event => updateRow('amount', event.currentTarget.value)}
       />
-      <AsyncAutocomplete
-        endpoint="/api/s/commodity"
-        params={params.join('&')}
-        placeholder="Commodity"
-        value={entry.commodity || ''}
-        style={{ flex: 1 }}
-        onChange={value => updateRow('commodity', value)}
-      />
+
+      <Chips
+        size="xs"
+        radius="sm"
+        value={entry.commodity}
+        onChange={(val: string) => {
+          updateRow('commodity', val);
+        }}>
+        {commodities.map(c => (
+          <Chip key={c} value={c}>
+            {c}
+          </Chip>
+        ))}
+      </Chips>
+
       {canDelete ? (
         <Button compact onClick={removeRow} variant="outline">
           Remove
