@@ -1,42 +1,42 @@
 {
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true
-        }
-    },
-    "settings": {
-        "react": {
-            "version": "17"
-        }
-    },
-    "rules": {
-        "sort-keys-fix/sort-keys-fix": "warn",
-        "@typescript-eslint/ban-ts-comment": 0,
-        "@typescript-eslint/explicit-module-boundary-types": 0,
-        "@typescript-eslint/no-explicit-any": 0,
-        "@typescript-eslint/no-namespace": 0,
-        "@typescript-eslint/no-var-requires": 0,
-        "eqeqeq":  ["error", "smart"]
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "prettier",
-        "plugin:jest/recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "env": {
-        "amd": true,
-        "browser": true,
-        "es6": true,
-        "node": true,
-        "jest": true
-    },
-    "globals": {
-        "React": true,
-        "__VERSION__": true
-    },
-    "plugins": ["@typescript-eslint", "jest", "prettier", "react-hooks", "react", "sort-keys-fix"]
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "17"
+    }
+  },
+  "rules": {
+    "sort-keys-fix/sort-keys-fix": "warn",
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-namespace": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "eqeqeq": ["error", "smart"]
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "env": {
+    "amd": true,
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "React": true,
+    "__VERSION__": true
+  },
+  "plugins": ["@typescript-eslint", "jest", "prettier", "react-hooks", "react", "sort-keys-fix"]
 }

@@ -17,26 +17,27 @@ import EntryRow from './entry-row';
 import PaymentAccount from './payment-acct-row';
 import prepareSubmitData from './prepare-submit';
 
-const EMPTY_ENTRY: Posting = {
-  account: '',
-  amount: ''
-};
-
 export const OPTION_SPLITWISE = 'splitwise';
 
 export type FormData = Transaction & {
   payingAccount?: string;
 };
 
-const Dashboard: FC<{ journal: Api.BootstrapResponse }> = () => {
+const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
   const notifications = useNotifications();
   const [options, setOptions] = useState<string[]>([]);
+
+  const emptyEntry: Posting = {
+    account: '',
+    amount: '',
+    commodity: journal.commodities.length === 1 ? journal.commodities[0] : ''
+  };
 
   const { onSubmit, values, setFieldValue, setValues, reset } = useForm<FormData>({
     initialValues: {
       date: new Date(),
       description: '',
-      entries: [EMPTY_ENTRY]
+      entries: [emptyEntry]
     }
   });
 
@@ -51,7 +52,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = () => {
   function addRow() {
     setValues(state => ({
       ...state,
-      entries: state.entries.concat({ ...EMPTY_ENTRY })
+      entries: state.entries.concat({ ...emptyEntry })
     }));
   }
 
@@ -147,6 +148,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = () => {
             removeRow={removeRow(i)}
             updateRow={updateRow(i)}
             amountPlaceholder={amountPlaceholder}
+            commodities={journal.commodities}
           />
         ))}
         <PaymentAccount
