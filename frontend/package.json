@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "main": "src/index.tsx",
   "license": "MIT",
   "dependencies": {

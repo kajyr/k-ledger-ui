@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/kajyr/k-ledger-ui/compare/v1.7.0...v1.8.0) (2022-07-19)
+
+
+### Bug Fixes
+
+* Calendar popup borders fixed ([c1bc955](https://github.com/kajyr/k-ledger-ui/commit/c1bc955a2fe427755b592e45183a45b3ed2274e7))
+
+
+### Features
+
+* Commodity selection with buttons ([44b24cf](https://github.com/kajyr/k-ledger-ui/commit/44b24cffcf8b253094d1b93946fefff4d6256488)), closes [#1](https://github.com/kajyr/k-ledger-ui/issues/1)
+
+
+
+
+
 # [1.7.0](https://github.com/kajyr/k-ledger-ui/compare/v1.6.1...v1.7.0) (2022-07-13)
 
 
