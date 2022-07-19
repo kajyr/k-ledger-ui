@@ -1,13 +1,13 @@
+import React, { FC, useState } from 'react';
+
 import { callApi } from 'helpers/api';
 import { isToday } from 'helpers/dates';
 import { Posting, Transaction } from 'pta-tools';
 import { Api } from 'types';
 
-import React, { FC, useState } from 'react';
-
 import AsyncAutocomplete from 'atoms/async-autocomplete';
 
-import { Button, Chip, Chips, Group, LoadingOverlay, Popover, Text } from '@mantine/core';
+import { Button, Chip, Chips, Group, LoadingOverlay, Modal, Text } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
 import { useForm } from '@mantine/hooks';
 import { useNotifications } from '@mantine/notifications';
@@ -114,20 +114,14 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = () => {
     <>
       <form onSubmit={onSubmit(handleSubmit)} style={{ position: 'relative' }}>
         <LoadingOverlay visible={showOverlay} />
-        <Popover
-          opened={dateOpen}
-          onClose={() => setDateOpen(false)}
-          target={
-            <Text size="sm" style={{ marginTop: '15px' }}>
-              Date:{' '}
-              <Button onClick={() => setDateOpen(o => !o)} size="xs" compact variant="outline">
-                {dateStr}
-              </Button>
-            </Text>
-          }
-          styles={{ body: { width: 260 } }}
-          withArrow>
-          <div style={{ display: 'flex' }}>
+        <Text size="sm" style={{ marginTop: '15px' }}>
+          Date:{' '}
+          <Button onClick={() => setDateOpen(true)} size="xs" compact variant="outline">
+            {dateStr}
+          </Button>
+        </Text>
+        <Modal opened={dateOpen} onClose={() => setDateOpen(false)} withCloseButton={false}>
+          <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
             <Calendar
               value={date}
               onChange={date => {
@@ -136,7 +130,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = () => {
               }}
             />
           </div>
-        </Popover>
+        </Modal>
         <AsyncAutocomplete
           label="Payee / Description"
           value={values.description}
