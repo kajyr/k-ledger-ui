@@ -9,13 +9,17 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
-
+    reviewers:
+      - "kajyr" 
   - package-ecosystem: "npm"
     directory: "/backend"
     schedule:
       interval: "weekly"
-
+    reviewers:
+      - "kajyr"
   - package-ecosystem: "npm"
     directory: "/frontend"
     schedule:
       interval: "weekly"
+    reviewers:
+      - "kajyr"
