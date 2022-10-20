@@ -20,7 +20,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.30.6",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.20"
   },
   "scripts": {
     "start": "ts-node server.ts",
