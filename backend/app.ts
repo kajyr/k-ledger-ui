@@ -21,7 +21,7 @@ async function build(opts = {}) {
     url: '/api/*'
   });
 
-  app.register(require('fastify-static'), {
+  app.register(require('@fastify/static'), {
     root: PUBLIC_PATH
   });
 

@@ -4,23 +4,23 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^18.0.4",
-    "dayjs": "^1.11.3",
-    "dotenv": "^16.0.1",
-    "fastify": "^3.25.3",
-    "fastify-log": "^1.2.1",
+    "@fastify/static": "^6.5.0",
+    "@types/node": "^18.11.3",
+    "dayjs": "^1.11.5",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.9.2",
+    "fastify-log": "^1.2.2",
     "fastify-routes-table": "^0.1.1",
-    "fastify-static": "^4.7.0",
-    "pino-pretty": "^8.1.0",
+    "pino-pretty": "^9.1.1",
     "pta-tools": "^1.5.2",
-    "ts-node": "^10.8.2",
+    "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.4"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.30.6",
-    "@typescript-eslint/parser": "^5.30.6",
-    "nodemon": "^2.0.19"
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "nodemon": "^2.0.20"
   },
   "scripts": {
     "start": "ts-node server.ts",
