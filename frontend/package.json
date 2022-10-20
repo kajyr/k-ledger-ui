@@ -16,7 +16,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "buffer": "^6.0.3",
-    "dayjs": "^1.11.3",
+    "dayjs": "^1.11.5",
     "html-webpack-plugin": "^5.5.0",
     "pta-tools": "^1.5.2",
     "react": "^17.0.2",
