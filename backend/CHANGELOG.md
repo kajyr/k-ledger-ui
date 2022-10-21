@@ -3,47 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.7.0](https://github.com/kajyr/k-ledger-ui/compare/v1.6.1...v1.7.0) (2022-07-13)
+# [1.8.0](https://github.com/kajyr/k-ledger-ui/compare/v1.7.0...v1.8.0) (2022-10-21)
 
+**Note:** Version bump only for package backend
+
+# [1.7.0](https://github.com/kajyr/k-ledger-ui/compare/v1.6.1...v1.7.0) (2022-07-13)
 
 ### Features
 
-* commodity autocomplete ([35d2720](https://github.com/kajyr/k-ledger-ui/commit/35d272031997668423e82344706e0fe881656258))
-* Review of daily entries. ([d952f25](https://github.com/kajyr/k-ledger-ui/commit/d952f25e8d6b5023e94549087089ab4948ccc0a7)), closes [#2](https://github.com/kajyr/k-ledger-ui/issues/2)
-
-
-
-
+- commodity autocomplete ([35d2720](https://github.com/kajyr/k-ledger-ui/commit/35d272031997668423e82344706e0fe881656258))
+- Review of daily entries. ([d952f25](https://github.com/kajyr/k-ledger-ui/commit/d952f25e8d6b5023e94549087089ab4948ccc0a7)), closes [#2](https://github.com/kajyr/k-ledger-ui/issues/2)
 
 ## [1.6.1](https://github.com/kajyr/k-ledger-ui/compare/v1.6.0...v1.6.1) (2022-01-25)
 
-
 ### Bug Fixes
 
-* Payee account now prioritize sorting also liabilities ([4340e2d](https://github.com/kajyr/k-ledger-ui/commit/4340e2d353cade3ebf2e60e92dcd1328a89e5dd4))
-
-
-
-
+- Payee account now prioritize sorting also liabilities ([4340e2d](https://github.com/kajyr/k-ledger-ui/commit/4340e2d353cade3ebf2e60e92dcd1328a89e5dd4))
 
 # [1.6.0](https://github.com/kajyr/k-ledger-ui/compare/v1.5.0...v1.6.0) (2022-01-18)
 
 **Note:** Version bump only for package backend
 
-
-
-
-
 # [1.5.0](https://github.com/kajyr/k-ledger-ui/compare/v1.4.0...v1.5.0) (2021-12-14)
-
 
 ### Features
 
-* Account suggestions now considers description to provide better suggestions ([94de593](https://github.com/kajyr/k-ledger-ui/commit/94de59321fa1d1643f81c89a62f0727d12530f4e))
-
-
-
-
+- Account suggestions now considers description to provide better suggestions ([94de593](https://github.com/kajyr/k-ledger-ui/commit/94de59321fa1d1643f81c89a62f0727d12530f4e))
 
 # [1.4.0](https://github.com/kajyr/k-ledger-ui/compare/v1.3.1...v1.4.0) (2021-12-10)
 
