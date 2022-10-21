@@ -10,10 +10,8 @@ on:
 jobs:
   release-image:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Login to gitHub container registry
         uses: docker/login-action@v2
         with:
