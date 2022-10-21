@@ -13,6 +13,7 @@ updates:
       - 'kajyr'
     labels:
       - "dependencies"
+    open-pull-requests-limit: 3
   - package-ecosystem: 'npm'
     directory: '/frontend'
     schedule:
@@ -21,11 +22,13 @@ updates:
       - 'kajyr'
     labels:
       - "dependencies"
+    open-pull-requests-limit: 3
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     labels:
       - "dependencies"
      reviewers:
       - 'kajyr'
+    open-pull-requests-limit: 3

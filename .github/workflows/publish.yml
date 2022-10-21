@@ -1,11 +1,10 @@
 name: publish
 
 on:
-  release:
-    types: [published]
   push:
-    branches:
-      - main
+    # Only on new tags
+    tags:
+      - '*'
 
 jobs:
   release-image:
