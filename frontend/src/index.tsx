@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 // After
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';

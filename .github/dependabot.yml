@@ -6,6 +6,15 @@
 version: 2
 updates:
   - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'kajyr'
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 3
+  - package-ecosystem: 'npm'
     directory: '/backend'
     schedule:
       interval: 'weekly'
