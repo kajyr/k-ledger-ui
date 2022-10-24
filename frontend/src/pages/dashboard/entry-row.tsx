@@ -4,7 +4,7 @@ import { Comment, Posting, isComment } from 'pta-tools';
 
 import AsyncAutocomplete from 'atoms/async-autocomplete';
 
-import { Button, Chip, Chips, Group, Space, TextInput, createStyles } from '@mantine/core';
+import { Button, Chip, Group, Space, TextInput, createStyles } from '@mantine/core';
 
 const useStyles = createStyles(theme => {
   return {
@@ -57,19 +57,17 @@ const EntryRow: FC<{
         onChange={event => updateRow('amount', event.currentTarget.value)}
       />
 
-      <Chips
-        size="xs"
-        radius="sm"
+      <Chip.Group
         value={entry.commodity}
         onChange={(val: string) => {
           updateRow('commodity', val);
         }}>
         {commodities.map(c => (
-          <Chip key={c} value={c}>
+          <Chip key={c} value={c} size="xs" radius="sm">
             {c}
           </Chip>
         ))}
-      </Chips>
+      </Chip.Group>
 
       {canDelete ? (
         <Button compact onClick={removeRow} variant="outline">

@@ -25,13 +25,19 @@ const App: FC = () => {
     <>
       <Page filename={data.file}>
         <Paper p="md" shadow="sm" component="section">
-          <Tabs>
-            <Tabs.Tab label="Add">
+          <Tabs defaultValue="dashboard">
+            <Tabs.List>
+              <Tabs.Tab value="dashboard">Add</Tabs.Tab>
+              <Tabs.Tab value="review">Review</Tabs.Tab>
+            </Tabs.List>
+
+            <Tabs.Panel value="dashboard">
               <Dashboard journal={data} />
-            </Tabs.Tab>
-            <Tabs.Tab label="Review">
+            </Tabs.Panel>
+
+            <Tabs.Panel value="review">
               <Review journal={data} />
-            </Tabs.Tab>
+            </Tabs.Panel>
           </Tabs>
         </Paper>
       </Page>

@@ -7,10 +7,10 @@ import { Api } from 'types';
 
 import AsyncAutocomplete from 'atoms/async-autocomplete';
 
-import { Button, Chip, Chips, Group, LoadingOverlay, Modal, Text } from '@mantine/core';
+import { Button, Chip, Group, LoadingOverlay, Modal, Text } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
-import { useForm } from '@mantine/hooks';
-import { useNotifications } from '@mantine/notifications';
+import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
 
 import ConfirmationModal from './confirmation-modal';
 import EntryRow from './entry-row';
@@ -24,7 +24,6 @@ export type FormData = Transaction & {
 };
 
 const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
-  const notifications = useNotifications();
   const [options, setOptions] = useState<string[]>([]);
 
   const emptyEntry: Posting = {
@@ -33,7 +32,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
     commodity: journal.commodities.length === 1 ? journal.commodities[0] : ''
   };
 
-  const { onSubmit, values, setFieldValue, setValues, reset } = useForm<FormData>({
+  const { onSubmit, values, setFieldValue, removeListItem, reset, insertListItem } = useForm<FormData>({
     initialValues: {
       date: new Date(),
       description: '',
@@ -50,33 +49,18 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
   };
 
   function addRow() {
-    setValues(state => ({
-      ...state,
-      entries: state.entries.concat({ ...emptyEntry })
-    }));
+    insertListItem('entries', { ...emptyEntry });
   }
 
   function updateRow(idx: number) {
     return (field: string, value: string) => {
-      setValues(state => ({
-        ...state,
-        entries: state.entries.map((e, i) => {
-          if (i !== idx) {
-            return e;
-          }
-
-          return { ...e, [field]: value };
-        })
-      }));
+      setFieldValue(`entries.${idx}.${field}`, value);
     };
   }
 
   function removeRow(idx: number) {
     return () => {
-      setValues(state => ({
-        ...state,
-        entries: state.entries.filter((e, i) => i !== idx)
-      }));
+      removeListItem('entries', idx);
     };
   }
 
@@ -89,7 +73,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
     });
     setOverlay(false);
     if (response.ok) {
-      notifications.showNotification({
+      showNotification({
         color: 'green',
         message: 'All is good.',
         title: 'Transaction saved'
@@ -97,7 +81,7 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
       reset();
       return;
     }
-    notifications.showNotification({
+    showNotification({
       color: 'ed',
       message: 'Something went wrong, sorry.',
       title: 'Error'
@@ -156,9 +140,11 @@ const Dashboard: FC<{ journal: Api.BootstrapResponse }> = ({ journal }) => {
           value={values.payingAccount}
           onChange={value => setFieldValue('payingAccount', value)}
         />
-        <Chips style={{ marginTop: '25px' }} size="xs" radius="sm" multiple value={options} onChange={setOptions}>
-          <Chip value={OPTION_SPLITWISE}>Split with Splitwise</Chip>
-        </Chips>
+        <Chip.Group style={{ marginTop: '25px' }} multiple value={options} onChange={setOptions}>
+          <Chip value={OPTION_SPLITWISE} size="xs" radius="sm">
+            Split with Splitwise
+          </Chip>
+        </Chip.Group>
         <Group position="right" style={{ marginTop: '25px' }}>
           <Button variant="outline" onClick={addRow}>
             Add row
