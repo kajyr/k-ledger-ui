@@ -1,7 +1,7 @@
-import { Api } from 'types';
-
 import React, { FC } from 'react';
 import { useQuery } from 'react-query';
+
+import { Api } from 'types';
 
 import Loader from 'atoms/Loader';
 

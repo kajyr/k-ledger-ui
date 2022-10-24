@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { Badge, Button, Divider, Group, Title } from '@mantine/core';
@@ -22,7 +22,7 @@ const Body = styled.main`
   flex: 1;
 `;
 
-const Page: FC<{ filename: string }> = ({ filename, children }) => (
+const Page: FC<{ filename: string; children: ReactNode }> = ({ filename, children }) => (
   <Wrapper>
     <header>
       <Title order={1}>kLedger UI</Title>
