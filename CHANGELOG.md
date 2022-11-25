@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/kajyr/k-ledger-ui/compare/v1.8.1...v1.8.2) (2022-11-25)
+
+### Bug Fixes
+
+- production mode build ([606fa51](https://github.com/kajyr/k-ledger-ui/commit/606fa51075e8aec67d4a15cb1b8b91a22e0985ac))
+
 ## [1.8.1](https://github.com/kajyr/k-ledger-ui/compare/v1.8.0...v1.8.1) (2022-10-21)
 
 **Note:** Version bump only for package k-ledger-ui
